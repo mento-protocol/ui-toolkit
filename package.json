@@ -1,11 +1,16 @@
 {
-  "name": "ui-toolkit",
+  "name": "@mento-labs/ui-toolkit",
   "version": "0.1.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "scope": "@mento-labs"
+  },
   "files": [
     "dist/**"
   ],
