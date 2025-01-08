@@ -32,6 +32,9 @@
       "@utils/*": [
         "./src/utils/*"
       ],
+      "@components/web3/*": [
+        "./src/components/web3/*"
+      ],
     },
     "noEmit": true,
     "incremental": true,

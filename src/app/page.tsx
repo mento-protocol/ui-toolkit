@@ -1,13 +1,11 @@
 import {
-  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
   Checkbox,
-  Container,
-  Form,
+  RainbowKitConnectButton,
   FormControl,
   FormDescription,
   FormItem,
@@ -24,14 +22,13 @@ import {
   Switch,
   Textarea,
 } from "@/components/ui";
-import { ConnectWallet } from "@/components/web3";
 
 export default function InputComponentsShowcase() {
   return (
     <div className="p-8 space-y-8">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Input Components</h1>
-        <ConnectWallet />
+        <RainbowKitConnectButton />
       </div>
       {/* Text Inputs */}
       <Card>

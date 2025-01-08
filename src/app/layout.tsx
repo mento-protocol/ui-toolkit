@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@/themes/providers/ThemeProvider";
-import { Web3Provider } from "@/components/web3/providers/Web3Provider";
+import { RainbowKitWeb3Provider } from "@components/web3";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.variable}>
         <ThemeProvider defaultTheme="system">
-          <Web3Provider>{children}</Web3Provider>
+          <RainbowKitWeb3Provider projectId={process?.env?.NEXT_PUBLIC_WALLET_CONNECT_ID || "123123123123123123"}>{children}</RainbowKitWeb3Provider>
         </ThemeProvider>
       </body>
     </html>

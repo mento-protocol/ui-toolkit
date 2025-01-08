@@ -2,17 +2,15 @@
 
 import { forwardRef } from "react";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-import { Button } from "../button/Button";
+import { Button, ButtonProps } from "../button/Button";
 import { cn } from "@/utils/common/cn";
 
 export interface ConnectButtonProps
-  extends React.HTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "outline" | "ghost";
-  size?: "default" | "sm" | "lg";
-}
+  extends ButtonProps,
+    React.HTMLAttributes<HTMLButtonElement> {}
 
 const ConnectButton = forwardRef<HTMLButtonElement, ConnectButtonProps>(
-  ({ className, variant = "default", size = "default", ...props }, ref) => {
+  ({ className, variant = "primary", size = "default", ...props }, ref) => {
     const { address, isConnected } = useAccount();
     const { connect, connectors } = useConnect();
     const { disconnect } = useDisconnect();
@@ -21,7 +19,7 @@ const ConnectButton = forwardRef<HTMLButtonElement, ConnectButtonProps>(
       return (
         <Button
           ref={ref}
-          variant={variant}
+          variant="primary"
           size={size}
           className={cn("font-medium", className)}
           onClick={() => disconnect()}

@@ -13,3 +13,5 @@ export * from "./select/Select";
 export * from "./accordion/Accordion";
 export * from "./container/Container";
 export * from "./grid/Grid";
+export * from "./connect-button/ConnectButton";
+export * from "./connect-button/RainbowKitConnectButton";

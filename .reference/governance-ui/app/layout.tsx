@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
 import {
   LearnMore,
@@ -26,13 +25,13 @@ interface RootLayoutProps {
 }
 
 export const metadata: Metadata = {
-  title: "Mento Governance",
-  description: "Mento governance platform.",
+  title: "Mento UI toolkit",
+  description: "Mento UI toolkit.",
   openGraph: {
     url: "https://governance.mento.org",
     type: "website",
-    title: "Mento Governance",
-    description: "Mento governance platform.",
+    title: "Mento UI toolkit",
+    description: "Mento UI toolkit.",
   },
   robots: {
     index: false,
@@ -74,7 +73,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <Toaster />
           </div>
         </Providers>
-        <Analytics />
       </body>
     </html>
   );
