@@ -5,11 +5,11 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Button, ButtonProps } from "../button/Button";
 import { cn } from "@/utils/common/cn";
 
-export interface ConnectButtonProps
+export interface RainbowKitConnectButtonProps
   extends ButtonProps,
     React.HTMLAttributes<HTMLButtonElement> {}
 
-const RainbowKitConnectButton = forwardRef<HTMLButtonElement, ConnectButtonProps>(
+const RainbowKitConnectButton = forwardRef<HTMLButtonElement, RainbowKitConnectButtonProps>(
   ({ className, variant = "primary", size = "default", ...props }, ref) => {
     return (
       <ConnectButton.Custom>
@@ -49,6 +49,6 @@ const RainbowKitConnectButton = forwardRef<HTMLButtonElement, ConnectButtonProps
   }
 );
 
-RainbowKitConnectButton.displayName = "ConnectButton";
+RainbowKitConnectButton.displayName = "RainbowKitConnectButton";
 
 export { RainbowKitConnectButton };

@@ -17,13 +17,13 @@ This library provides standardized UI components, theming, and utilities shared 
 
 
 ```bash
-npm install @mento-labs/ui-toolkit
+npm install @mento-protocol/ui-toolkit
 ```
 
 or
 
 ```bash
-pnpm add @mento-labs/ui-toolkit
+pnpm add @mento-protocol/ui-toolkit
 ```
 
 ## Development

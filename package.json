@@ -1,5 +1,5 @@
 {
-  "name": "@mento-labs/ui-toolkit",
+  "name": "@mento-protocol/ui-toolkit",
   "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.js",
@@ -9,7 +9,7 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/",
-    "scope": "@mento-labs"
+    "scope": "@mento-protocol"
   },
   "exports": {
     ".": {
@@ -22,7 +22,9 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "bunchee",
+    "build": "pnpm build:clean && pnpm build:bundle",
+    "build:clean": "rm -rf dist",
+    "build:bundle": "bunchee",
     "dev": "next dev",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "release": "changeset publish",
