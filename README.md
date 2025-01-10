@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UI Toolkit
 
-## Getting Started
+A comprehensive UI component library for web3 applications, built with React, Radix UI, and Tailwind CSS.
 
-First, run the development server:
+## Overview
+
+This library provides standardized UI components, theming, and utilities shared across web3 applications. It includes:
+
+- Accessible UI Components (powered by Radix UI)
+- Dark/Light Theme System
+- Web3 Components & Integrations (Wagmi, RainbowKit)
+- Responsive Layout Components
+- Form Components & Validation
+- Common Utilities
+
+## Installation
+
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install @mento-protocol/ui-toolkit
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+or
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm add @mento-protocol/ui-toolkit
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Development
 
-## Learn More
+1. Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Start development server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm dev
+```
 
-## Deploy on Vercel
+3. Build the library:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+pnpm build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+- `src/components/ui`: Base UI components
+- `src/components/web3`: Web3 components and integrations
+- `src/themes`: Theme configurations and providers
+- `src/utils`: Shared utilities
+- `src/app`: Component playground/documentation
+
+## Contributing
+
+1. Create a feature branch
+2. Make your changes
+3. Run tests and linting
+4. Submit a PR
+
+## Requirements
+
+### Peer Dependencies
+- React >=19.0.0
+- Next.js >=15.1.2
+- Tailwind CSS >=3.4.17
+
+## Key Features
+
+### Core Components
+- Buttons (multiple variants)
+- Forms & Inputs
+- Cards & Containers
+- Navigation (Header, Footer)
+- Modals & Sheets
+- Accordions & Dropdowns
+- Data Display Components
+
+### Web3 Integration
+- Wallet Connection
+- Network Switching
+- Transaction Handling
+- Address Display & Formatting
+
+### Theme System
+- Dark/Light Mode Support
+- Customizable Color Schemes
+- Consistent Typography
+- Responsive Design Utilities
+
+## Usage
+
+### Basic Component Usage
+
+## License
+
+MIT

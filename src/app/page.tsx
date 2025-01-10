@@ -1,101 +1,155 @@
-import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Checkbox,
+  RainbowKitConnectButton,
+  FormControl,
+  FormDescription,
+  FormItem,
+  FormLabel,
+  Input,
+  RadioGroup,
+  RadioGroupItem,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  Slider,
+  Switch,
+  Textarea,
+} from "@/components/ui";
 
-export default function Home() {
+export default function InputComponentsShowcase() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="p-8 space-y-8">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Input Components</h1>
+        <RainbowKitConnectButton />
+      </div>
+      {/* Text Inputs */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Text Inputs</CardTitle>
+          <CardDescription>Basic text input components</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-6">
+          <FormItem>
+            <FormLabel>Default Input</FormLabel>
+            <FormControl>
+              <Input placeholder="Enter text..." />
+            </FormControl>
+            <FormDescription>
+              A standard single-line text input.
+            </FormDescription>
+          </FormItem>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <FormItem>
+            <FormLabel>Disabled Input</FormLabel>
+            <FormControl>
+              <Input disabled placeholder="Disabled input" />
+            </FormControl>
+          </FormItem>
+
+          <FormItem>
+            <FormLabel>With Icon</FormLabel>
+            <div className="relative">
+              <Input placeholder="Search..." />
+              <span className="absolute right-3 top-2.5 text-muted-foreground">
+                🔍
+              </span>
+            </div>
+          </FormItem>
+
+          <FormItem>
+            <FormLabel>Multiline Input</FormLabel>
+            <FormControl>
+              <Textarea placeholder="Enter long text..." />
+            </FormControl>
+          </FormItem>
+        </CardContent>
+      </Card>
+
+      {/* Selection Inputs */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Selection Inputs</CardTitle>
+          <CardDescription>Components for selecting options</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-6">
+          <FormItem>
+            <FormLabel>Checkbox</FormLabel>
+            <div className="flex items-center space-x-2">
+              <Checkbox id="terms" />
+              <FormLabel htmlFor="terms">Accept terms and conditions</FormLabel>
+            </div>
+          </FormItem>
+
+          <FormItem>
+            <FormLabel>Radio Group</FormLabel>
+            <RadioGroup defaultValue="comfortable">
+              <div className="flex flex-col space-y-2">
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="default" id="default" />
+                  <FormLabel htmlFor="default">Default</FormLabel>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="comfortable" id="comfortable" />
+                  <FormLabel htmlFor="comfortable">Comfortable</FormLabel>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="compact" id="compact" />
+                  <FormLabel htmlFor="compact">Compact</FormLabel>
+                </div>
+              </div>
+            </RadioGroup>
+          </FormItem>
+
+          <FormItem>
+            <FormLabel>Select Dropdown</FormLabel>
+            <Select>
+              <SelectTrigger>
+                <SelectValue placeholder="Select a fruit" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="apple">Apple</SelectItem>
+                <SelectItem value="banana">Banana</SelectItem>
+                <SelectItem value="orange">Orange</SelectItem>
+              </SelectContent>
+            </Select>
+          </FormItem>
+        </CardContent>
+      </Card>
+
+      {/* Range Inputs */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Range Inputs</CardTitle>
+          <CardDescription>
+            Components for selecting ranges and toggles
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-6">
+          <FormItem>
+            <FormLabel>Slider</FormLabel>
+            <Slider defaultValue={[50]} max={100} step={1} />
+            <FormDescription>
+              Drag to select a value between 0 and 100
+            </FormDescription>
+          </FormItem>
+
+          <FormItem>
+            <div className="flex items-center justify-between">
+              <FormLabel>Toggle Switch</FormLabel>
+              <Switch />
+            </div>
+            <FormDescription>Toggle between two states</FormDescription>
+          </FormItem>
+        </CardContent>
+      </Card>
     </div>
   );
 }
