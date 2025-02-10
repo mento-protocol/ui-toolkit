@@ -23,16 +23,16 @@
       "@/*": [
         "./src/*"
       ],
-      "@components/*": [
+      "@/components/*": [
         "./src/components/*"
       ],
-      "@themes/*": [
+      "@/themes/*": [
         "./src/themes/*"
       ],
-      "@utils/*": [
+      "@/utils/*": [
         "./src/utils/*"
       ],
-      "@components/web3/*": [
+      "@/components/web3/*": [
         "./src/components/web3/*"
       ],
     },
