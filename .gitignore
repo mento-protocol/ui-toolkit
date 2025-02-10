@@ -45,3 +45,5 @@ next-env.d.ts
 .trunk/
 
 .cursor/
+
+lib/minipay-dapp

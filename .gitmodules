@@ -1,0 +1,6 @@
+[submodule "lib/governance-ui"]
+	path = lib/governance-ui
+	url = https://github.com/mento-protocol/governance-ui
+[submodule "lib/reserve-site"]
+	path = lib/reserve-site
+	url = https://github.com/mento-protocol/reserve-site

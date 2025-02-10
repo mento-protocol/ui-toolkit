@@ -2,15 +2,17 @@
 
 import { forwardRef } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { Button, ButtonProps } from "../button/Button";
-import { cn } from "@/utils/common/cn";
+import { Button } from "../button/Button";
+import { cn } from "@/utils";
 
-export interface RainbowKitConnectButtonProps
-  extends ButtonProps,
-    React.HTMLAttributes<HTMLButtonElement> {}
+export interface RainbowKitConnectButtonProps {
+  className?: string;
+  fullWidth?: boolean;
+  theme?: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "tertiary" | "link" | "clear";
+}
 
 const RainbowKitConnectButton = forwardRef<HTMLButtonElement, RainbowKitConnectButtonProps>(
-  ({ className, variant = "primary", size = "default", ...props }, ref) => {
+  ({ className, theme = "primary", fullWidth, ...props }, ref) => {
     return (
       <ConnectButton.Custom>
         {({ account, chain, openConnectModal, mounted }) => {
@@ -21,8 +23,8 @@ const RainbowKitConnectButton = forwardRef<HTMLButtonElement, RainbowKitConnectB
             return (
               <Button
                 ref={ref}
-                variant={variant}
-                size={size}
+                theme={theme}
+                fullwidth={fullWidth}
                 className={cn("font-medium", className)}
                 {...props}
               >
@@ -34,8 +36,8 @@ const RainbowKitConnectButton = forwardRef<HTMLButtonElement, RainbowKitConnectB
           return (
             <Button
               ref={ref}
-              variant={variant}
-              size={size}
+              theme={theme}
+              fullwidth={fullWidth}
               className={cn("font-medium", className)}
               onClick={openConnectModal}
               {...props}
