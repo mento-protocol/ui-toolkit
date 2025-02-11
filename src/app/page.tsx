@@ -45,7 +45,7 @@ export default function ComponentsShowcase() {
           <CardDescription>Blockchain interaction components</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6">
-          <WagmiProvider config={mentoWagmiConfig}>
+          {/* <WagmiProvider config={mentoWagmiConfig}>
             <FormItem>
               <FormLabel>Default Wagmi Button</FormLabel>
               <ConnectButton />
@@ -63,11 +63,11 @@ export default function ComponentsShowcase() {
               {...mentoRainbowKitProviderConfig}
             >
               <FormItem>
-              <FormLabel>Default RainbowKit Button</FormLabel>
-              <RainbowKitConnectButton />
-            </FormItem>
-          </RainbowKitProvider>
-          </WagmiProvider>
+                <FormLabel>Default RainbowKit Button</FormLabel>
+                <RainbowKitConnectButton />
+              </FormItem>
+            </RainbowKitProvider>
+          </WagmiProvider> */}
         </CardContent>
       </Card>
 

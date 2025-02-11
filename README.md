@@ -101,6 +101,25 @@ pnpm build
 
 ### Basic Component Usage
 
+## Future Improvements
+
+### Color System Enhancement
+
+The current theme system uses HEX colors for simplicity and ease of adoption. A planned enhancement is to migrate to an HSL (Hue, Saturation, Lightness) color system, which would offer several advantages:
+
+- **Dynamic Theme Generation**: Easier creation of light/dark themes by manipulating lightness values
+- **Programmatic Color Manipulation**: Simple adjustments to create consistent color variations
+- **Improved Accessibility**: Better control over contrast ratios through lightness values
+- **Semantic Color Relationships**: Maintain color harmony through consistent hue values
+
+This enhancement would require:
+1. CSS variable system for HSL values
+2. Migration guide for existing implementations
+3. Theme generation utilities
+4. Backwards compatibility layer
+
+The migration would be implemented as a major version update to maintain compatibility with existing implementations.
+
 ## License
 
 MIT
