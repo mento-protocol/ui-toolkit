@@ -10,17 +10,16 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 export interface ConnectButtonProps {
   className?: string;
   fullWidth?: boolean;
-  theme?: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "tertiary" | "link" | "clear";
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
 }
 
 const ConnectedDropdown = ({
   address,
-  theme,
-  fullWidth,
+  variant,
   onDisconnect,
 }: {
   address: string;
-  theme: ConnectButtonProps["theme"];
+  variant: ConnectButtonProps["variant"];
   fullWidth?: boolean;
   onDisconnect: () => void;
 }) => {
@@ -28,8 +27,7 @@ const ConnectedDropdown = ({
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <Button
-          theme={theme}
-          fullwidth={fullWidth}
+          variant={variant}
           className="w-full"
         >
           <div className="flex items-center justify-between gap-2">
@@ -59,7 +57,7 @@ const ConnectedDropdown = ({
 export const ConnectButton = ({
   className,
   fullWidth,
-  theme = "primary",
+  variant = "default",
 }: ConnectButtonProps) => {
   const { address, isConnected } = useAccount();
   const { connect, connectors } = useConnect();
@@ -69,8 +67,8 @@ export const ConnectButton = ({
     return (
       <ConnectedDropdown
         address={address}
-        theme={theme}
-        fullWidth={fullWidth}
+        variant={variant}
+        fullWidth={!!fullWidth}
         onDisconnect={() => disconnect()}
       />
     );
@@ -78,8 +76,7 @@ export const ConnectButton = ({
 
   return (
     <Button
-      theme={theme}
-      fullwidth={fullWidth}
+      variant={variant}
       className={cn("w-full", className)}
       onClick={() => connect({ connector: connectors[0] })}
     >

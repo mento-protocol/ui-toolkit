@@ -3,71 +3,43 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 9%;
-
-    --primary: 231 84% 62%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 0 0% 91%;
-    --secondary-foreground: 0 0% 9%;
-
-    --success: 142 72% 29%;
-    --success-foreground: 0 0% 100%;
-
-    --error: 0 84% 60%;
-    --error-foreground: 0 0% 100%;
-
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 9%;
-
-    --info: 214 95% 60%;
-    --info-foreground: 0 0% 100%;
-
-    --border: 0 0% 91%;
-    --input: 0 0% 91%;
-  }
-
-  .dark {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 93%;
-
-    --primary: 231 84% 62%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 100%;
-
-    --success: 142 72% 29%;
-    --success-foreground: 0 0% 100%;
-
-    --error: 0 84% 60%;
-    --error-foreground: 0 0% 100%;
-
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 9%;
-
-    --info: 214 95% 60%;
-    --info-foreground: 0 0% 100%;
-
-    --border: 0 0% 12%;
-    --input: 0 0% 12%;
-  }
-}
-
-@layer base {
   @font-face {
     font-family: "Founders Grotesk";
     src: url("/fonts/founders-grotesk-light.woff2") format("woff2");
     font-weight: 300;
     font-style: normal;
   }
+
+  @font-face {
+    font-family: "Founders Grotesk";
+    src: url("/fonts/founders-grotesk-regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Founders Grotesk";
+    src: url("/fonts/founders-grotesk-medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Founders Grotesk";
+    src: url("/fonts/founders-grotesk-semibold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Founders Grotesk";
+    src: url("/fonts/founders-grotesk-bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+  }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
 

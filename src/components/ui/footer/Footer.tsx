@@ -12,162 +12,100 @@ import {
   AccordionTrigger,
 } from "../accordion/Accordion";
 
-export interface FooterProps extends React.HTMLAttributes<HTMLElement> {
-  logo?: React.ReactNode;
-  navItems?: Array<{
-    section: string;
-    items: Array<{
-      href: string;
-      label: string;
-      isExternal?: boolean;
-    }>;
-  }>;
-  socialLinks?: Array<{
-    href: string;
-    icon: React.ReactNode;
-    label: string;
-  }>;
-  showThemeSwitch?: boolean;
+export interface FooterProps {
+  className?: string;
 }
 
-const Footer = forwardRef<HTMLElement, FooterProps>(
-  (
-    {
-      logo,
-      navItems = [],
-      socialLinks = [],
-      showThemeSwitch = true,
-      className,
-      ...props
-    },
-    ref,
-  ) => {
-    return (
-      <footer
-        ref={ref}
-        className={cn("mt-auto border-t bg-background", className)}
-        {...props}
-      >
-        <Container>
-          {/* Desktop Footer */}
-          <div className="hidden lg:grid lg:grid-cols-4 lg:gap-8 py-16">
-            <div className="flex flex-col gap-4">
-              {logo}
-              <p className="text-sm text-muted-foreground">
-                Mento © {new Date().getFullYear()}. <br />
-                All rights reserved.
-              </p>
-            </div>
-
-            {navItems.map(({ section, items }) => (
-              <div key={section}>
-                <h3 className="text-sm font-medium">{section}</h3>
-                <ul className="mt-4 space-y-3">
-                  {items.map(({ href, label, isExternal }) => (
-                    <li key={href}>
-                      <Link
-                        href={href}
-                        className="text-sm text-muted-foreground hover:text-foreground"
-                        {...(isExternal && {
-                          target: "_blank",
-                          rel: "noopener noreferrer",
-                        })}
-                      >
-                        {label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-
-            <div className="flex flex-col justify-between">
-              <div className="flex gap-4">
-                {socialLinks.map(({ href, icon, label }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    aria-label={label}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-foreground"
-                  >
-                    {icon}
-                  </Link>
-                ))}
-              </div>
-              {showThemeSwitch && (
-                <div className="flex items-center justify-between">
-                  <span className="text-sm">Theme</span>
-                  <ThemeSwitch />
-                </div>
-              )}
-            </div>
+export function Footer({ className }: FooterProps) {
+  return (
+    <footer className={cn(
+      "w-full border-t border-border dark:border-border-dark bg-background dark:bg-background-dark",
+      className
+    )}>
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div>
+            <h3 className="text-lg font-semibold text-foreground dark:text-foreground-dark">Mento Protocol</h3>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
+                  Careers
+                </Link>
+              </li>
+            </ul>
           </div>
-
-          {/* Mobile Footer */}
-          <div className="lg:hidden py-8 space-y-8">
-            <div className="flex items-center justify-between">
-              {logo}
-              <div className="flex gap-4">
-                {socialLinks.map(({ href, icon, label }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    aria-label={label}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-foreground"
-                  >
-                    {icon}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <Accordion type="single" collapsible>
-              {navItems.map(({ section, items }) => (
-                <AccordionItem key={section} value={section}>
-                  <AccordionTrigger className="text-sm">
-                    {section}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="flex flex-col space-y-3">
-                      {items.map(({ href, label, isExternal }) => (
-                        <Link
-                          key={href}
-                          href={href}
-                          className="text-sm text-muted-foreground hover:text-foreground"
-                          {...(isExternal && {
-                            target: "_blank",
-                            rel: "noopener noreferrer",
-                          })}
-                        >
-                          {label}
-                        </Link>
-                      ))}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-
-            {showThemeSwitch && (
-              <div className="flex items-center justify-between pt-4 border-t">
-                <span className="text-sm">Theme</span>
-                <ThemeSwitch />
-              </div>
-            )}
-
-            <p className="text-sm text-muted-foreground pt-4 border-t">
-              Mento © {new Date().getFullYear()}. All rights reserved.
-            </p>
+          <div>
+            <h3 className="text-lg font-semibold text-foreground dark:text-foreground-dark">Resources</h3>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
+                  Documentation
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
+                  Help Center
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
+                  API Reference
+                </Link>
+              </li>
+            </ul>
           </div>
-        </Container>
-      </footer>
-    );
-  },
-);
-Footer.displayName = "Footer";
-
-export { Footer };
+          <div>
+            <h3 className="text-lg font-semibold text-foreground dark:text-foreground-dark">Community</h3>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
+                  Discord
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
+                  Twitter
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
+                  GitHub
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-foreground dark:text-foreground-dark">Legal</h3>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
+                  Terms of Service
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-12 border-t border-border dark:border-border-dark pt-8">
+          <p className="text-center text-foreground/60 dark:text-foreground-dark/60">
+            © {new Date().getFullYear()} Mento Protocol. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}

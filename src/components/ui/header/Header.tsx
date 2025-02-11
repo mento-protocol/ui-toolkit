@@ -1,13 +1,14 @@
 "use client";
 
-import { forwardRef } from "react";
 import { cn } from "@/utils/common/cn";
 import Link from "next/link";
-import { Container } from "../container/Container";
-import { ThemeSwitch } from "../ThemeSwitch";
 import { ConnectButton } from "../connect-button/ConnectButton";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Button } from "../button/Button";
 
-export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
+export interface HeaderProps {
+  className?: string;
   logo?: React.ReactNode;
   navItems?: Array<{
     href: string;
@@ -17,55 +18,53 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   showConnectButton?: boolean;
 }
 
-const Header = forwardRef<HTMLElement, HeaderProps>(
-  (
-    {
-      logo,
-      navItems = [],
-      showThemeSwitch = true,
-      showConnectButton = true,
-      className,
-      ...props
-    },
-    ref,
-  ) => {
-    return (
-      <header
-        ref={ref}
-        className={cn(
-          "sticky top-0 z-50 w-full border-b bg-background",
-          className,
-        )}
-        {...props}
-      >
-        <Container>
-          <div className="flex h-16 items-center justify-between">
-            <Link href="/" className="flex items-center space-x-2">
-              {logo}
-            </Link>
+export function Header({
+  className,
+  logo,
+  navItems = [],
+  showThemeSwitch = true,
+  showConnectButton = true,
+}: HeaderProps) {
+  const { theme, setTheme } = useTheme();
 
-            <nav className="hidden gap-6 md:flex">
-              {navItems.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="text-sm font-medium transition-colors hover:text-foreground/80"
-                >
-                  {label}
-                </Link>
-              ))}
-            </nav>
+  return (
+    <header className={cn(
+      "sticky top-0 z-50 w-full border-b border-border dark:border-border-dark bg-background dark:bg-background-dark",
+      className
+    )}>
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+        <div className="flex items-center gap-6">
+          <Link href="/" className="flex items-center space-x-2">
+            {logo || <span className="text-xl font-bold">Mento UI</span>}
+          </Link>
 
-            <div className="flex items-center gap-4">
-              {showThemeSwitch && <ThemeSwitch />}
-              {showConnectButton && <ConnectButton />}
-            </div>
-          </div>
-        </Container>
-      </header>
-    );
-  },
-);
-Header.displayName = "Header";
+          <nav className="hidden md:flex items-center space-x-4">
+            {navItems.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+        </div>
 
-export { Header };
+        <div className="flex items-center gap-4">
+          {showThemeSwitch && (
+            <Button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="bg-background dark:bg-background-dark hover:bg-accent dark:hover:bg-accent-dark"
+            >
+              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+          )}
+          {showConnectButton && <ConnectButton />}
+        </div>
+      </div>
+    </header>
+  );
+}

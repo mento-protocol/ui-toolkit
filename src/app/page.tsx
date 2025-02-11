@@ -28,51 +28,46 @@ import {
   TextWithCopy,
   Textarea,
 } from "@/components/ui";
-import { mentoRainbowKitProviderConfig, mentoWagmiConfig, rainbowKitTheme } from "@/config";
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { ChangeEvent } from "react";
-import { WagmiProvider } from "wagmi";
 
 export default function ComponentsShowcase() {
   return (
-    <div className="p-8 space-y-8">
-      <h1 className="text-3xl font-bold mb-8">UI Components Showcase</h1>
+    <div className="container mx-auto py-8 space-y-8">
+      <div className="space-y-4">
+        <h1 className="text-4xl font-bold">UI Components</h1>
+        <p className="text-foreground/60">
+          A showcase of Mento Protocol's UI components with dark mode support.
+        </p>
+      </div>
 
       {/* Web3 Components */}
-      <Card>
+      <Card className="border border-border">
         <CardHeader>
           <CardTitle>Web3 Components</CardTitle>
           <CardDescription>Blockchain interaction components</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6">
-          {/* <WagmiProvider config={mentoWagmiConfig}>
-            <FormItem>
-              <FormLabel>Default Wagmi Button</FormLabel>
-              <ConnectButton />
-            </FormItem>
-            <FormItem>
-              <FormLabel>Secondary Wagmi Connect Button</FormLabel>
-              <ConnectButton theme="secondary" />
-            </FormItem>
-            <FormItem>
-              <FormLabel>Full Width Wagmi Connect Button</FormLabel>
-              <ConnectButton fullWidth theme="tertiary" />
-            </FormItem>
-            <RainbowKitProvider 
-              theme={rainbowKitTheme.darkMode}
-              {...mentoRainbowKitProviderConfig}
-            >
-              <FormItem>
-                <FormLabel>Default RainbowKit Button</FormLabel>
-                <RainbowKitConnectButton />
-              </FormItem>
-            </RainbowKitProvider>
-          </WagmiProvider> */}
+          <FormItem>
+            <FormLabel>Default Wagmi Button</FormLabel>
+            <ConnectButton />
+          </FormItem>
+          <FormItem>
+            <FormLabel>Secondary Wagmi Connect Button</FormLabel>
+            <ConnectButton theme="secondary" />
+          </FormItem>
+          <FormItem>
+            <FormLabel>Full Width Wagmi Connect Button</FormLabel>
+            <ConnectButton fullWidth theme="tertiary" />
+          </FormItem>
+          <FormItem>
+            <FormLabel>Default RainbowKit Button</FormLabel>
+            <RainbowKitConnectButton />
+          </FormItem>
         </CardContent>
       </Card>
 
       {/* Text Input Components */}
-      <Card>
+      <Card className="border border-border">
         <CardHeader>
           <CardTitle>Text Input Components</CardTitle>
           <CardDescription>Various forms of text input</CardDescription>
@@ -83,6 +78,9 @@ export default function ComponentsShowcase() {
             <FormControl>
               <Input placeholder="Enter text..." />
             </FormControl>
+            <FormDescription className="text-foreground/60">
+              This is a basic text input field.
+            </FormDescription>
           </FormItem>
 
           <FormItem>
@@ -117,7 +115,7 @@ export default function ComponentsShowcase() {
       </Card>
 
       {/* Selection Components */}
-      <Card>
+      <Card className="border border-border">
         <CardHeader>
           <CardTitle>Selection Components</CardTitle>
           <CardDescription>Components for making choices</CardDescription>
@@ -149,8 +147,10 @@ export default function ComponentsShowcase() {
             <FormLabel>Button Types</FormLabel>
             <div className="flex gap-2">
               <Button>Default</Button>
-              <Button className="bg-secondary">Secondary</Button>
-              <Button className="border border-input">Outline</Button>
+              <Button className="bg-secondary text-secondary-foreground">Secondary</Button>
+              <Button className="border border-input bg-background hover:bg-accent hover:text-accent-foreground">
+                Outline
+              </Button>
             </div>
           </FormItem>
         </CardContent>
