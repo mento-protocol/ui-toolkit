@@ -13,6 +13,12 @@ This library provides standardized UI components, theming, and utilities shared 
 - Form Components & Validation
 - Common Utilities
 
+## Components Under Development
+
+The following components are currently under development and not available in the public API:
+
+- **Markdown Editor**: A WYSIWYG markdown editor component is being developed but is currently disabled due to styling and SSR compatibility issues.
+
 ## Installation
 
 

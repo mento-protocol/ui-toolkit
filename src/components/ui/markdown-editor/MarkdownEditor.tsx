@@ -146,8 +146,26 @@ export const MarkdownEditor = ({
           </div>
         )}
         {selectedView === "preview" && (
-          <div className="prose dark:prose-invert max-h-[650px] overflow-y-auto">
-            <div dangerouslySetInnerHTML={{ __html: markdown }} />
+          <div className="prose dark:prose-invert max-h-[650px] overflow-y-auto p-4 border border-input rounded-lg">
+            <MDXEditor
+              readOnly
+              markdown={markdown}
+              plugins={[
+                headingsPlugin(),
+                listsPlugin(),
+                quotePlugin(),
+                thematicBreakPlugin(),
+                codeBlockPlugin({ defaultCodeBlockLanguage: "txt" }),
+                codeMirrorPlugin({
+                  codeBlockLanguages: {
+                    js: "JavaScript",
+                    css: "CSS",
+                    txt: "text",
+                    tsx: "TypeScript",
+                  },
+                }),
+              ]}
+            />
           </div>
         )}
       </div>

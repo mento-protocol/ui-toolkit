@@ -1,40 +1,81 @@
+"use client";
+
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Button,
+  Calendar,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-  Checkbox,
-  RainbowKitConnectButton,
+  ConnectButton,
+  CurrencyInput,
+  DatePicker,
   FormControl,
   FormDescription,
   FormItem,
   FormLabel,
   Input,
-  RadioGroup,
-  RadioGroupItem,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+  Label,
+  MultiProgressBar,
+  ProgressBar,
+  RainbowKitConnectButton,
   Slider,
-  Switch,
+  TextWithCopy,
   Textarea,
 } from "@/components/ui";
+import { mentoRainbowKitProviderConfig, mentoWagmiConfig, rainbowKitTheme } from "@/config";
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { ChangeEvent } from "react";
+import { WagmiProvider } from "wagmi";
 
-export default function InputComponentsShowcase() {
+export default function ComponentsShowcase() {
   return (
     <div className="p-8 space-y-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Input Components</h1>
-        <RainbowKitConnectButton />
-      </div>
-      {/* Text Inputs */}
+      <h1 className="text-3xl font-bold mb-8">UI Components Showcase</h1>
+
+      {/* Web3 Components */}
       <Card>
         <CardHeader>
-          <CardTitle>Text Inputs</CardTitle>
-          <CardDescription>Basic text input components</CardDescription>
+          <CardTitle>Web3 Components</CardTitle>
+          <CardDescription>Blockchain interaction components</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-6">
+          <WagmiProvider config={mentoWagmiConfig}>
+            <FormItem>
+              <FormLabel>Default Wagmi Button</FormLabel>
+              <ConnectButton />
+            </FormItem>
+            <FormItem>
+              <FormLabel>Secondary Wagmi Connect Button</FormLabel>
+              <ConnectButton theme="secondary" />
+            </FormItem>
+            <FormItem>
+              <FormLabel>Full Width Wagmi Connect Button</FormLabel>
+              <ConnectButton fullWidth theme="tertiary" />
+            </FormItem>
+            <RainbowKitProvider 
+              theme={rainbowKitTheme.darkMode}
+              {...mentoRainbowKitProviderConfig}
+            >
+              <FormItem>
+              <FormLabel>Default RainbowKit Button</FormLabel>
+              <RainbowKitConnectButton />
+            </FormItem>
+          </RainbowKitProvider>
+          </WagmiProvider>
+        </CardContent>
+      </Card>
+
+      {/* Text Input Components */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Text Input Components</CardTitle>
+          <CardDescription>Various forms of text input</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6">
           <FormItem>
@@ -42,26 +83,23 @@ export default function InputComponentsShowcase() {
             <FormControl>
               <Input placeholder="Enter text..." />
             </FormControl>
-            <FormDescription>
-              A standard single-line text input.
-            </FormDescription>
           </FormItem>
 
           <FormItem>
-            <FormLabel>Disabled Input</FormLabel>
+            <FormLabel>Currency Input</FormLabel>
             <FormControl>
-              <Input disabled placeholder="Disabled input" />
+              <CurrencyInput
+                onChange={(e: string | ChangeEvent<HTMLInputElement>) => {
+                  if (typeof e === 'string') {
+                    console.log('Value:', e);
+                  } else {
+                    console.log('Event:', e.target.value);
+                  }
+                }}
+                maxValue="1000"
+                symbol="USD"
+              />
             </FormControl>
-          </FormItem>
-
-          <FormItem>
-            <FormLabel>With Icon</FormLabel>
-            <div className="relative">
-              <Input placeholder="Search..." />
-              <span className="absolute right-3 top-2.5 text-muted-foreground">
-                🔍
-              </span>
-            </div>
           </FormItem>
 
           <FormItem>
@@ -70,83 +108,137 @@ export default function InputComponentsShowcase() {
               <Textarea placeholder="Enter long text..." />
             </FormControl>
           </FormItem>
+
+          <FormItem>
+            <FormLabel>Copyable Text</FormLabel>
+            <TextWithCopy text="Click to copy this text" />
+          </FormItem>
         </CardContent>
       </Card>
 
-      {/* Selection Inputs */}
+      {/* Selection Components */}
       <Card>
         <CardHeader>
-          <CardTitle>Selection Inputs</CardTitle>
-          <CardDescription>Components for selecting options</CardDescription>
+          <CardTitle>Selection Components</CardTitle>
+          <CardDescription>Components for making choices</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6">
           <FormItem>
-            <FormLabel>Checkbox</FormLabel>
+            <FormLabel>Toggle</FormLabel>
             <div className="flex items-center space-x-2">
-              <Checkbox id="terms" />
-              <FormLabel htmlFor="terms">Accept terms and conditions</FormLabel>
+              <Input type="checkbox" id="terms" className="w-4 h-4" />
+              <Label htmlFor="terms">Accept terms and conditions</Label>
             </div>
           </FormItem>
 
           <FormItem>
             <FormLabel>Radio Group</FormLabel>
-            <RadioGroup defaultValue="comfortable">
-              <div className="flex flex-col space-y-2">
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="default" id="default" />
-                  <FormLabel htmlFor="default">Default</FormLabel>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="comfortable" id="comfortable" />
-                  <FormLabel htmlFor="comfortable">Comfortable</FormLabel>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="compact" id="compact" />
-                  <FormLabel htmlFor="compact">Compact</FormLabel>
-                </div>
+            <div className="flex flex-col space-y-2">
+              <div className="flex items-center space-x-2">
+                <Input type="radio" id="default" name="size" value="default" className="w-4 h-4" />
+                <Label htmlFor="default">Default</Label>
               </div>
-            </RadioGroup>
+              <div className="flex items-center space-x-2">
+                <Input type="radio" id="comfortable" name="size" value="comfortable" className="w-4 h-4" />
+                <Label htmlFor="comfortable">Comfortable</Label>
+              </div>
+            </div>
           </FormItem>
 
           <FormItem>
-            <FormLabel>Select Dropdown</FormLabel>
-            <Select>
-              <SelectTrigger>
-                <SelectValue placeholder="Select a fruit" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="orange">Orange</SelectItem>
-              </SelectContent>
-            </Select>
+            <FormLabel>Button Types</FormLabel>
+            <div className="flex gap-2">
+              <Button>Default</Button>
+              <Button className="bg-secondary">Secondary</Button>
+              <Button className="border border-input">Outline</Button>
+            </div>
           </FormItem>
         </CardContent>
       </Card>
 
-      {/* Range Inputs */}
+      {/* Date & Time Components */}
       <Card>
         <CardHeader>
-          <CardTitle>Range Inputs</CardTitle>
-          <CardDescription>
-            Components for selecting ranges and toggles
-          </CardDescription>
+          <CardTitle>Date & Time Components</CardTitle>
+          <CardDescription>Components for date and time selection</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-6">
+          <FormItem>
+            <FormLabel>Calendar</FormLabel>
+            <Calendar
+              mode="single"
+              selected={new Date()}
+              onSelect={(date: Date | undefined) => console.log(date)}
+            />
+          </FormItem>
+
+          <FormItem>
+            <FormLabel>Date Picker</FormLabel>
+            <DatePicker onDayClick={(date: Date) => console.log(date)}>
+              <DatePicker.Button>
+                Select a date
+              </DatePicker.Button>
+              <DatePicker.Panel>
+                <div className="p-2">Custom panel content</div>
+              </DatePicker.Panel>
+            </DatePicker>
+          </FormItem>
+        </CardContent>
+      </Card>
+
+      {/* Progress Components */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Progress Components</CardTitle>
+          <CardDescription>Components showing progress</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-6">
+          <FormItem>
+            <FormLabel>Progress Bar</FormLabel>
+            <ProgressBar current={60} max={100} />
+          </FormItem>
+
+          <FormItem>
+            <FormLabel>Multi Progress Bar</FormLabel>
+            <MultiProgressBar
+              values={[
+                { progress: 30, type: "success" },
+                { progress: 20, type: "info" },
+                { progress: 10, type: "warning" },
+              ]}
+            />
+          </FormItem>
+        </CardContent>
+      </Card>
+
+      {/* Interactive Components */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Interactive Components</CardTitle>
+          <CardDescription>Components with user interaction</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6">
           <FormItem>
             <FormLabel>Slider</FormLabel>
             <Slider defaultValue={[50]} max={100} step={1} />
-            <FormDescription>
-              Drag to select a value between 0 and 100
-            </FormDescription>
           </FormItem>
 
           <FormItem>
-            <div className="flex items-center justify-between">
-              <FormLabel>Toggle Switch</FormLabel>
-              <Switch />
-            </div>
-            <FormDescription>Toggle between two states</FormDescription>
+            <FormLabel>Accordion</FormLabel>
+            <Accordion type="single" collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Section 1</AccordionTrigger>
+                <AccordionContent>
+                  Content for section 1 goes here.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>Section 2</AccordionTrigger>
+                <AccordionContent>
+                  Content for section 2 goes here.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </FormItem>
         </CardContent>
       </Card>

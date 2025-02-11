@@ -1,25 +1,28 @@
-import { ThemeProvider } from "@/themes/providers/ThemeProvider";
-import { RainbowKitWeb3Provider } from "@components/web3";
-import { Inter } from "next/font/google";
-import "./globals.css";
+"use client";
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { WagmiProvider } from 'wagmi';
+import { mentoWagmiConfig } from '@/config';
+import { rainbowKitTheme } from '@/config/rainbow-kit.config';
+import { mentoRainbowKitProviderConfig } from '@/config/rainbow-kit-provider.config';
+
+import '@rainbow-me/rainbowkit/styles.css';
+import './globals.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const queryClient = new QueryClient();
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.variable}>
-        <ThemeProvider defaultTheme="system">
-          <RainbowKitWeb3Provider projectId={process?.env?.NEXT_PUBLIC_WALLET_CONNECT_ID || "123123123123123123"}>{children}</RainbowKitWeb3Provider>
-        </ThemeProvider>
+    <html lang="en">
+      <body>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
       </body>
     </html>
   );
