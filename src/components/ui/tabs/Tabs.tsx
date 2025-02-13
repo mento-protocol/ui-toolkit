@@ -1,98 +1,94 @@
-"use client";
+"use strict";
+import { Children, ComponentProps, useState } from "react";
+import { VariantProps, cva } from "class-variance-authority";
+import { cn } from "@/utils";
+import BaseComponentProps from "@/components/interfaces/base-component-props.interface";
 
-import * as React from "react";
-import * as TabsPrimitive from "@radix-ui/react-tabs";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/common/cn";
+const variants = cva("sticky top-0 z-10 flex bg-inherit px-0 py-x1", {
+  variants: {
+    headerAlignment: {
+      default: "justify-between",
+      left: "justify-start",
+      right: "justify-end",
+    },
+  },
+  defaultVariants: {
+    headerAlignment: "default",
+  },
+});
 
-const Tabs = TabsPrimitive.Root;
-
-const TabsList = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.List>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.List
-    ref={ref}
-    className={cn(
-      "inline-flex h-10 items-center justify-center rounded-lg bg-gray-lighter p-1 text-black dark:bg-black-off dark:text-white",
-      className
-    )}
-    {...props}
-  />
-));
-TabsList.displayName = TabsPrimitive.List.displayName;
-
-const tabsTriggerVariants = cva(
-  cn(
-    "inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-    "data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-  ),
+const buttonVariant = cva(
+  "m-0 cursor-pointer border-none bg-none p-0 text-lg text-gray-light hover:text-primary",
   {
     variants: {
-      variant: {
-        default: cn(
-          "hover:bg-white/50 dark:hover:bg-black/50",
-          "data-[state=active]:bg-white dark:data-[state=active]:bg-black"
-        ),
-        outline: cn(
-          "bg-transparent",
-          "hover:bg-gray-lighter dark:hover:bg-black-off",
-          "data-[state=active]:bg-white dark:data-[state=active]:bg-black",
-          "data-[state=active]:text-black dark:data-[state=active]:text-white"
-        ),
-        pills: cn(
-          "rounded-full",
-          "hover:bg-gray-lighter dark:hover:bg-black-off",
-          "data-[state=active]:bg-primary data-[state=active]:text-white"
-        ),
-        underline: cn(
-          "rounded-none border-b-2 border-transparent bg-transparent px-4 pb-3 pt-2",
-          "hover:text-primary dark:hover:text-primary",
-          "data-[state=active]:border-primary data-[state=active]:text-primary",
-          "data-[state=active]:shadow-none"
-        ),
-      },
-      fullWidth: {
-        true: "w-full",
+      selected: {
+        true: "font-medium text-primary",
         false: "",
       },
     },
     defaultVariants: {
-      variant: "default",
-      fullWidth: false,
+      selected: false,
     },
-  }
+  },
 );
 
-export interface TabsTriggerProps
-  extends React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>,
-    VariantProps<typeof tabsTriggerVariants> {}
+export interface TabListProps
+  extends ComponentProps<"div">,
+    VariantProps<typeof variants> {
+  tabs: string[];
+}
 
-const TabsTrigger = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Trigger>,
-  TabsTriggerProps
->(({ className, variant, fullWidth, ...props }, ref) => (
-  <TabsPrimitive.Trigger
-    ref={ref}
-    className={cn(tabsTriggerVariants({ variant, fullWidth }), className)}
-    {...props}
-  />
-));
-TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
+export const TabList = ({
+  className,
+  children,
+  tabs,
+  headerAlignment = "default",
+}: TabListProps) => {
+  const [selectedTab, setSelectedTab] = useState(0);
 
-const TabsContent = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.Content
-    ref={ref}
-    className={cn(
-      "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-      className
-    )}
-    {...props}
-  />
-));
-TabsContent.displayName = TabsPrimitive.Content.displayName;
+  return (
+    <div className={cn("flex flex-col gap-6 bg-inherit", className)}>
+      <div
+        className={variants({
+          headerAlignment,
+        })}
+      >
+        {tabs.map((tab, index) => (
+          <button
+            key={index}
+            className={buttonVariant({
+              selected: index === selectedTab,
+            })}
+            onClick={() => setSelectedTab(index)}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+      <div className="flex max-h-[500px] flex-nowrap overflow-hidden overflow-y-auto md:max-h-full md:overflow-y-visible">
+        {Children.toArray(children).map((child, index) => (
+          <div
+            key={index}
+            className={cn(
+              "w-full min-w-full max-w-full break-all duration-300 ease-out-back",
+              index !== selectedTab &&
+                "max-h-[100px] overflow-hidden opacity-0",
+            )}
+            style={{ transform: `translate(-${selectedTab * 100}%)` }}
+          >
+            {child}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
-export { Tabs, TabsList, TabsTrigger, TabsContent }; 
+TabList.displayName = "TabList";
+
+interface TabProps extends BaseComponentProps {}
+
+export const Tab = ({ className, children }: TabProps) => {
+  return <div className={className}>{children}</div>;
+};
+Tab.displayName = "Tab";

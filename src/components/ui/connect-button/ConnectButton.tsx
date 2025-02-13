@@ -1,89 +1,208 @@
 "use client";
 
-import { forwardRef } from "react";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
-import { Button } from "../button/Button";
+import {
+  ConnectButton as RainbowConnectButton,
+} from "@rainbow-me/rainbowkit";
+import {
+  ChevronIcon,
+  DisconnectIcon,
+  MentoIcon,
+  ChainIcon,
+  AccountIcon,
+} from "../_icons";
 import { cn } from "@/utils";
-import { ChevronRight, LogOut } from "lucide-react";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { Button } from "../button/Button";
+import { DropdownButton } from "../dropdown-button/DropdownButton";
+import BaseComponentProps from "@/components/interfaces/base-component-props.interface";
+import { Avatar } from "../avatar/Avatar";
+import WalletHelper from "../_helpers/wallet.helper";
 
-export interface ConnectButtonProps {
-  className?: string;
-  fullWidth?: boolean;
-  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+export interface TokenBalance {
+  symbol: string;
+  formatted: string;
 }
 
-const ConnectedDropdown = ({
-  address,
-  variant,
-  onDisconnect,
-}: {
-  address: string;
-  variant: ConnectButtonProps["variant"];
-  fullWidth?: boolean;
-  onDisconnect: () => void;
-}) => {
-  return (
-    <DropdownMenu.Root>
-      <DropdownMenu.Trigger asChild>
-        <Button
-          variant={variant}
-          className="w-full"
-        >
-          <div className="flex items-center justify-between gap-2">
-            <span>{address.slice(0, 6)}...{address.slice(-4)}</span>
-          </div>
-        </Button>
-      </DropdownMenu.Trigger>
+interface ConnectedDropdownProps extends BaseComponentProps {
+  fullwidth?: boolean;
+  account: {
+    address: string;
+    displayBalance?: string;
+  };
+  chain?: any;
+  mentoBalance: TokenBalance;
+  veMentoBalance: TokenBalance;
+  onAccountClick?: () => void;
+  onChainClick?: () => void;
+  onDisconnect?: () => void;
+  onAddMento?: () => void;
+  onAddVeMento?: () => void;
+  showChainSelector?: boolean;
+}
 
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content
-          className="z-50 min-w-[200px] overflow-hidden rounded-md border border-input bg-background p-1 shadow-md"
-          align="end"
-        >
-          <DropdownMenu.Item
-            className="flex cursor-pointer items-center gap-2 rounded-sm px-2 py-2 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
-            onClick={onDisconnect}
+export const ConnectedDropdown = ({
+  fullwidth,
+  account,
+  mentoBalance,
+  veMentoBalance,
+  onAccountClick,
+  onChainClick,
+  onDisconnect,
+  onAddMento,
+  onAddVeMento,
+  showChainSelector = false,
+}: ConnectedDropdownProps) => {
+  return (
+    <DropdownButton
+      theme={"clear"}
+      fullwidth={fullwidth}
+      title={WalletHelper.getShortAddress(account.address)}
+      avatar={
+        <Avatar
+          size="small"
+          className="flex h-full flex-row items-center"
+          address={account.address || ""}
+        />
+      }
+    >
+      <DropdownButton.Dropdown className="border border-solid border-black bg-white text-black dark:border-white dark:bg-black dark:text-white">
+        <div className="flex w-full flex-col items-center border-b border-solid border-black py-2 font-inter dark:border-white">
+          <div
+            title="Click to add MENTO to your wallet"
+            onClick={onAddMento}
+            className="flex w-full cursor-pointer flex-row justify-between px-5 py-3"
           >
-            <LogOut className="h-4 w-4" />
-            <span>Disconnect</span>
-          </DropdownMenu.Item>
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-    </DropdownMenu.Root>
+            <div className="flex flex-row items-center font-semibold">
+              <MentoIcon
+                className="mr-x1"
+                height={32}
+                width={32}
+                backgroundColor={"cyan"}
+              />
+              <span>{mentoBalance.symbol}</span>
+            </div>
+            <div className="flex flex-row items-center justify-center font-semibold">
+              {mentoBalance.formatted}
+            </div>
+          </div>
+          <hr className="mx-auto w-[calc(100%_-_40px)] border-t-gray-light" />
+          <div
+            title="Click to add veMENTO to your wallet"
+            onClick={onAddVeMento}
+            className="flex w-full cursor-pointer flex-row justify-between px-5 py-x2"
+          >
+            <div className="flex flex-shrink flex-grow flex-row items-center font-semibold">
+              <MentoIcon
+                className="mr-x1"
+                height={32}
+                width={32}
+                backgroundColor={"blush"}
+              />
+              <span>{veMentoBalance.symbol}</span>
+            </div>
+            <div className="flex flex-row items-center justify-center font-semibold">
+              {veMentoBalance.formatted}
+            </div>
+          </div>
+        </div>
+        <DropdownButton.Element
+          className="font-inter font-medium *:flex *:items-center *:justify-start [&_button]:pl-5"
+          onClick={onAccountClick}
+        >
+          <AccountIcon className="mr-3" />
+          <span>Account settings</span>
+        </DropdownButton.Element>
+        {showChainSelector && (
+          <DropdownButton.Element
+            className="font-inter font-medium *:flex *:items-center *:justify-start [&_button]:pl-5"
+            onClick={onChainClick}
+          >
+            <ChainIcon className="mr-3" />
+            <span>Chain settings</span>
+          </DropdownButton.Element>
+        )}
+        <hr className="mx-auto w-[calc(100%_-_40px)] border-t-gray-light" />
+        <DropdownButton.Element
+          className="font-inter font-medium *:flex *:items-center *:justify-start [&_button]:pl-5"
+          onClick={onDisconnect}
+        >
+          <DisconnectIcon className="mr-3" />
+          <span>Disconnect</span>
+        </DropdownButton.Element>
+      </DropdownButton.Dropdown>
+    </DropdownButton>
   );
 };
 
+interface ConnectButtonProps extends BaseComponentProps {
+  theme?: "primary" | "secondary";
+  fullwidth?: boolean;
+  mentoBalance: TokenBalance;
+  veMentoBalance: TokenBalance;
+  onAccountClick?: () => void;
+  onChainClick?: () => void;
+  onDisconnect?: () => void;
+  onAddMento?: () => void;
+  onAddVeMento?: () => void;
+  showChainSelector?: boolean;
+}
+
 export const ConnectButton = ({
   className,
-  fullWidth,
-  variant = "default",
+  theme,
+  fullwidth,
+  mentoBalance,
+  veMentoBalance,
+  onAccountClick,
+  onChainClick,
+  onDisconnect,
+  onAddMento,
+  onAddVeMento,
+  showChainSelector,
 }: ConnectButtonProps) => {
-  const { address, isConnected } = useAccount();
-  const { connect, connectors } = useConnect();
-  const { disconnect } = useDisconnect();
-
-  if (isConnected && address) {
-    return (
-      <ConnectedDropdown
-        address={address}
-        variant={variant}
-        fullWidth={!!fullWidth}
-        onDisconnect={() => disconnect()}
-      />
-    );
-  }
-
   return (
-    <Button
-      variant={variant}
-      className={cn("w-full", className)}
-      onClick={() => connect({ connector: connectors[0] })}
-    >
-      <div className="flex flex-row items-center justify-center gap-2">
-        <span>Connect wallet</span>
-        <ChevronRight className="h-4 w-4" />
-      </div>
-    </Button>
+    <RainbowConnectButton.Custom>
+      {({ account, chain, openConnectModal, mounted }) => {
+        if (!mounted) return <></>;
+        const connected = !!account && !!chain;
+
+        return (
+          <>
+            <div
+              className={cn(
+                fullwidth ? "w-full" : "flex w-auto justify-center",
+                className,
+              )}
+            >
+              {!connected ? (
+                <Button
+                  fullwidth={fullwidth}
+                  theme={theme || "secondary"}
+                  onClick={openConnectModal}
+                >
+                  <div className="flex flex-row place-items-center justify-center gap-2">
+                    <div>Connect wallet</div>
+                    <ChevronIcon direction={"right"} />
+                  </div>
+                </Button>
+              ) : (
+                <ConnectedDropdown
+                  account={account}
+                  fullwidth={!!fullwidth}
+                  chain={chain}
+                  mentoBalance={mentoBalance}
+                  veMentoBalance={veMentoBalance}
+                  onAccountClick={onAccountClick}
+                  onChainClick={onChainClick}
+                  onDisconnect={onDisconnect}
+                  onAddMento={onAddMento}
+                  onAddVeMento={onAddVeMento}
+                  showChainSelector={showChainSelector}
+                />
+              )}
+            </div>
+          </>
+        );
+      }}
+    </RainbowConnectButton.Custom>
   );
 };

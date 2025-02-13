@@ -67,7 +67,7 @@ export interface TooltipContentProps
 }
 
 const TooltipContent = React.forwardRef<
-  React.ElementRef<typeof TooltipPrimitive.Content>,
+  React.ComponentRef<typeof TooltipPrimitive.Content>,
   TooltipContentProps
 >(({ className, theme, size, hideArrow, sideOffset = 4, ...props }, ref) => (
   <TooltipPrimitive.Portal>

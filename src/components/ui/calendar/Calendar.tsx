@@ -3,7 +3,7 @@
 import * as React from "react";
 import { DayPicker } from "react-day-picker";
 import { cn } from "@/utils";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronIcon } from "../_icons";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
@@ -51,8 +51,8 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        NextMonthButton: () => <ChevronLeft className="h-4 w-4" />,
-        PreviousMonthButton: () => <ChevronRight className="h-4 w-4" />,
+        NextMonthButton: () => <ChevronIcon direction="left" className="h-4 w-4" />,
+        PreviousMonthButton: () => <ChevronIcon direction="right" className="h-4 w-4" />,
       }}
       {...props}
     />

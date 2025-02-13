@@ -1,11 +1,19 @@
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/common/cn";
+import { type ReactNode } from "react";
+import { cva } from "class-variance-authority";
+import BaseComponentProps from "@/components/interfaces/base-component-props.interface";
+import BaseInputProps from "@/components/interfaces/base-input-props.interface";
+import { cn } from "@/utils";
 
-const inputWrapperVariants = cva(
+interface InputProps extends BaseComponentProps, BaseInputProps {
+  type: "text" | "email" | "password" | "number" | "tel" | "url";
+  addon?: ReactNode;
+  compact?: boolean;
+}
+
+const inputWrapperVariant = cva(
   cn(
     "mt-x1 w-full gap-2 rounded-lg border border-solid border-gray-light transition-all duration-200 ease-out-circ",
-    "focus:border focus:border-solid focus:shadow-[0_0_0_2px]"
+    "focus:border focus:border-solid focus:shadow-[0_0_0_2px]",
   ),
   {
     variants: {
@@ -13,93 +21,99 @@ const inputWrapperVariants = cva(
         true: "px-4 py-3",
         false: "px-[32px] py-[18px]",
       },
-      hasError: {
+      disabled: {
+        true: "cursor-not-allowed",
+      },
+      error: {
         true: cn(
           "border-error",
           "focus:border-error focus:shadow-error",
-          "focus-within:border-error focus-within:shadow-error"
+          "focus-within:border-error focus-within:shadow-error",
         ),
         false: cn(
           "border-gray-light",
           "focus:border-primary focus:shadow-primary",
-          "focus-within:border-primary focus-within:shadow-primary"
+          "focus-within:border-primary focus-within:shadow-primary",
         ),
       },
     },
     defaultVariants: {
       compact: false,
-      hasError: false,
+      disabled: false,
+      error: false,
     },
-  }
+  },
 );
 
-const inputVariants = cva(
+const inputVariant = cva(
   cn(
     "w-full border-none bg-transparent text-lg font-normal text-black caret-primary outline-none dark:text-white",
-    "placeholder:text-gray-light"
+    "placeholder:text-gray-light",
   ),
   {
     variants: {
       compact: {
         true: "text-sm",
       },
+      disabled: {
+        true: "cursor-not-allowed",
+      },
     },
     defaultVariants: {
       compact: false,
+      disabled: false,
     },
-  }
+  },
 );
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement>,
-    VariantProps<typeof inputWrapperVariants> {
-  label?: string;
-  errorMessage?: string | React.ReactNode;
-  addon?: React.ReactNode;
-}
-
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type = "text", label, errorMessage, addon, compact, disabled, hasError, ...props }, ref) => {
-    return (
-      <div className={cn("mt-x1", disabled && "cursor-not-allowed", className)}>
-        {!!label && (
-          <label className="mb-2 text-[22px] font-medium" htmlFor={props.id}>
-            {label}
-          </label>
-        )}
-        <div
-          className={cn(
-            inputWrapperVariants({
-              compact,
-              hasError: hasError || !!errorMessage,
-            }),
-            disabled && "cursor-not-allowed"
-          )}
-        >
-          <input
-            type={type}
-            className={cn(
-              inputVariants({
-                compact,
-              }),
-              disabled && "cursor-not-allowed"
-            )}
-            ref={ref}
-            disabled={disabled}
-            {...props}
-          />
-          {addon}
-        </div>
-        {!!errorMessage && (
-          <div className="p2-1 text-sm font-semibold text-error-dark">
-            {errorMessage}
-          </div>
-        )}
+export const Input = ({
+  label,
+  id,
+  type,
+  placeholder,
+  className,
+  form,
+  addon,
+  error,
+  disabled,
+  compact,
+  value,
+}: InputProps) => {
+  return (
+    <div className={cn("mt-x1", disabled && "cursor-not-allowed", className)}>
+      {!!label && (
+        <label className="mb-2 text-[22px] font-medium" htmlFor={id}>
+          {label}
+        </label>
+      )}
+      <div
+        className={inputWrapperVariant({
+          compact,
+          disabled,
+          error: !!error,
+        })}
+      >
+        <input
+          id={id}
+          className={inputVariant({
+            compact,
+            disabled,
+          })}
+          placeholder={placeholder}
+          disabled={disabled}
+          type={type}
+          value={value}
+          {...form}
+        />
+        {addon}
       </div>
-    );
-  }
-);
+      {!!error && (
+        <div className="p2-1 text-sm font-semibold text-error-dark">
+          {error}
+        </div>
+      )}
+    </div>
+  );
+};
 
-Input.displayName = "Input";
-
-export { Input, inputWrapperVariants, inputVariants };
+export type { InputProps };

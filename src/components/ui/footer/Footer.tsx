@@ -1,111 +1,141 @@
 "use client";
 
-import { forwardRef } from "react";
 import Link from "next/link";
+import { DiscordIcon, GithubIcon, MentoLogoIcon, TwitterIcon } from "../_icons";
 import { ThemeSwitch } from "../theme-switch/ThemeSwitch";
-import { Container } from "../container/Container";
-import { cn } from "@/utils/common/cn";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../accordion/Accordion";
+import { MobileAccordionMenu } from "../mobile-accordion-menu/MobileAccordionMenu";
+import { links } from "@/config";
 
 export interface FooterProps {
   className?: string;
 }
 
-export function Footer({ className }: FooterProps) {
+export const Footer = ({ className }: FooterProps) => {
   return (
-    <footer className={cn(
-      "w-full border-t border-border dark:border-border-dark bg-background dark:bg-background-dark",
-      className
-    )}>
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          <div>
-            <h3 className="text-lg font-semibold text-foreground dark:text-foreground-dark">Mento Protocol</h3>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
-                  Careers
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-foreground dark:text-foreground-dark">Resources</h3>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
-                  Documentation
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
-                  Help Center
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
-                  API Reference
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-foreground dark:text-foreground-dark">Community</h3>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
-                  Discord
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
-                  Twitter
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
-                  GitHub
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-foreground dark:text-foreground-dark">Legal</h3>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-foreground/60 hover:text-foreground dark:text-foreground-dark/60 dark:hover:text-foreground-dark">
-                  Terms of Service
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="mt-12 border-t border-border dark:border-border-dark pt-8">
-          <p className="text-center text-foreground/60 dark:text-foreground-dark/60">
-            © {new Date().getFullYear()} Mento Protocol. All rights reserved.
-          </p>
-        </div>
-      </div>
+    <footer className={`mt-auto ${className}`}>
+      <DesktopFooter />
+      <MobileFooter />
     </footer>
   );
-}
+};
+
+const DesktopFooter = () => {
+  return (
+    <div className="mx-auto mt-36 hidden items-start justify-between gap-16 border-t border-black px-4 pb-20 pt-20 dark:border-[#343437] lg:mx-10 lg:flex xl:mx-auto xl:max-w-[1120px] xl:gap-36">
+      <div>
+        <MentoLogoIcon />
+        <p className="pt-3 font-inter text-[#636768]">
+          Mento © {new Date().getFullYear()}. <br />
+          All rights reserved.
+        </p>
+      </div>
+      <FooterNav />
+      <div className="flex flex-col gap-8">
+        <SocialLinks />
+        <div className="flex justify-between">
+          <span className="dark:text-body-dark">Theme</span>
+          <ThemeSwitch />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const MobileFooter = () => {
+  return (
+    <div className="block px-4 pb-8 pt-10 dark:bg-black lg:hidden">
+      <div className="border-t border-black dark:border-gray-light">
+        <MobileAccordionMenu classNames="bg-transparent" />
+        <div className="mt-6 flex justify-between">
+          <div className="flex flex-col">
+            <MentoLogoIcon className="h-5 w-[90px]" />
+            <p className="text-body-light pt-4">
+              Mento © {new Date().getFullYear()}. <br />
+              All rights reserved.
+            </p>
+          </div>
+          <div className="flex flex-col gap-8">
+            <SocialLinks />
+            <div className="flex justify-between">
+              <span className="dark:text-body-dark">Theme</span>
+              <ThemeSwitch />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const FooterNav = () => {
+  return (
+    <nav className="flex flex-1 justify-between">
+      {Object.entries(footerMenuItems).map(([heading, links]) => {
+        return (
+          <div key={heading}>
+            <h4 className="text-body-light mb-[10px] font-fg text-[20px] font-medium leading-none text-[#636768] dark:text-[#8F9394]">
+              {heading}
+            </h4>
+            <ul className="flex flex-col font-inter text-[15px]">
+              {links.map(({ title, href, isDownload }) => {
+                return (
+                  <Link
+                    key={title}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={href}
+                    download={isDownload}
+                  >
+                    {title}
+                  </Link>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })}
+    </nav>
+  );
+};
+
+const SocialLinks = () => {
+  return (
+    <nav className="dark:text-clean-white -mt-[10px] flex">
+      <Link target="_blank" rel="noopener noreferrer" href={links.twitter}>
+        <TwitterIcon className="text-black dark:text-white" />
+      </Link>
+      <Link
+        className="p-2.5"
+        target="_blank"
+        rel="noopener noreferrer"
+        href={links.github}
+      >
+        <GithubIcon className="dark:text-clean-white" />
+      </Link>
+      <Link
+        className="p-2.5"
+        target="_blank"
+        rel="noopener noreferrer"
+        href={links.discord}
+      >
+        <DiscordIcon className="dark:text-clean-white" />
+      </Link>
+    </nav>
+  );
+};
+
+export const footerMenuItems = {
+  Developers: [
+    { title: "Docs", href: links.docs, isDownload: false },
+    { title: "Github", href: links.github, isDownload: false },
+  ],
+  Community: [
+    { title: "Forum", href: links.forum, isDownload: false },
+    { title: "Discord", href: links.discord, isDownload: false },
+    { title: "Twitter", href: links.twitter, isDownload: false },
+  ],
+  Other: [
+    { title: "Cookie Policy", href: links.cookiePolicy, isDownload: true },
+    { title: "Privacy", href: "/privacy", isDownload: false },
+  ],
+};
