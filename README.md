@@ -21,16 +21,45 @@ The following components are currently under development and not available in th
 
 ## Installation
 
-
-```bash
-npm install @mento-protocol/ui-toolkit
-```
-
-or
-
 ```bash
 pnpm add @mento-protocol/ui-toolkit
 ```
+
+## Usage
+
+### Components
+
+```tsx
+import { Button, Input } from '@mento-protocol/ui-toolkit';
+```
+
+### Tailwind Configuration
+
+To use the Mento UI Toolkit's Tailwind configuration in your project:
+
+```js
+// tailwind.config.js
+import { tailwindConfig } from '@mento-protocol/ui-toolkit';
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  // Extend the base configuration
+  presets: [tailwindConfig],
+  // Add your custom configuration
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}',
+    // Include the UI toolkit components
+    './node_modules/@mento-protocol/ui-toolkit/dist/**/*.{js,ts,jsx,tsx}'
+  ],
+  theme: {
+    extend: {
+      // Your custom theme extensions
+    }
+  }
+};
+```
+
+This will give you access to all the Mento UI Toolkit's design tokens, colors, and utilities.
 
 ## Development
 
