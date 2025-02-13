@@ -1,10 +1,9 @@
 "use client";
 import { useTheme } from "next-themes";
-import { LightModeIcon } from "../_icons";
-import { DarkModeIcon } from "../_icons";
-import { cn } from "@/utils";
+import { LightModeIcon, DarkModeIcon } from "@/components/ui/_icons";
+import { cn } from "@/utils/common/cn";
 
-const enum Mode {
+export const enum Theme_Mode {
   LIGHT = "light",
   DARK = "dark",
 }
@@ -13,7 +12,7 @@ export const ThemeSwitch = () => {
   const { resolvedTheme: theme, setTheme } = useTheme();
 
   const onToggleSwitch = () => {
-    setTheme(theme === Mode.DARK ? Mode.LIGHT : Mode.DARK);
+    setTheme(theme === Theme_Mode.DARK ? Theme_Mode.LIGHT : Theme_Mode.DARK);
   };
 
   return (
@@ -21,14 +20,14 @@ export const ThemeSwitch = () => {
       onClick={onToggleSwitch}
       className={cn(
         "relative flex h-[24px] w-[44px] items-center justify-between rounded-[32px] px-x1 py-[3px]",
-        theme === Mode.LIGHT ? "border border-black bg-white" : "bg-secondary",
+        theme === Theme_Mode.LIGHT ? "border border-black bg-white" : "bg-secondary",
       )}
     >
       <div className="flex w-full items-center justify-between gap-x1">
         <div
           className={cn(
             "ease duration-[400ms] absolute h-[18px] w-[18px] rounded-[9px] bg-black transition-all",
-            theme === Mode.LIGHT ? "left-[3px]" : "left-[21px]",
+            theme === Theme_Mode.LIGHT ? "left-[3px]" : "left-[21px]",
           )}
         />
         <div className="flex w-full justify-between">

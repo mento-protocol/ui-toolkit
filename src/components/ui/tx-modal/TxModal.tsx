@@ -1,6 +1,6 @@
-import { Button } from "../button/Button";
-import { Loader } from "../loader/Loader";
-import { IModal, Modal } from "../modal/Modal";
+import { Button } from "@/components/ui/button/Button";
+import { Loader } from "@/components/ui/loader/Loader";
+import { IModal, Modal } from "@/components/ui/modal/Modal";
 
 export interface ITxModal extends Omit<IModal, "children"> {
   error?: boolean;

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Menu } from "@headlessui/react";
 import Link from "next/link";
 import { links } from "@/config";
-import { ChevronIcon } from "../_icons";
+import { ChevronIcon } from "@/components/ui/_icons";
 
 const headerMenuItems: {
   name: string;

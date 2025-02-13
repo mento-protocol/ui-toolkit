@@ -1,4 +1,4 @@
-import { cn } from "@/utils";
+import { cn } from "@/utils/common/cn";
 import { celo } from "viem/chains";
 import { useAccount } from "wagmi";
 

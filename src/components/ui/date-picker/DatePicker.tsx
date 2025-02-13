@@ -1,7 +1,7 @@
 "use client";
 
 import { Popover } from "@headlessui/react";
-import { Calendar, CalendarProps } from "../calendar/Calendar";
+import { Calendar, type CalendarProps } from "@/components/ui/calendar/Calendar";
 import { forwardRef } from "react";
 import * as React from "react";
 import { cn } from "@/utils/common/cn";

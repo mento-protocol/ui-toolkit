@@ -2,7 +2,7 @@ import * as React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
 import { cn } from "@/utils/common/cn";
-import { Label } from "../label/Label";
+import { Label } from "@/components/ui/label/Label";
 
 const Form = React.forwardRef<
   HTMLFormElement,

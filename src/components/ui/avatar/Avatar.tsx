@@ -2,7 +2,7 @@
 import BaseComponentProps from "@/components/interfaces/base-component-props.interface";
 import { blo, Address } from "blo";
 import { VariantProps, cva } from "class-variance-authority";
-import { BlockExplorerLink } from "../block-explorer-link/BlockExplorerLink";
+import { BlockExplorerLink } from "@/components/ui/block-explorer-link/BlockExplorerLink";
 
 const variants = cva("overflow-hidden rounded-full", {
   variants: {

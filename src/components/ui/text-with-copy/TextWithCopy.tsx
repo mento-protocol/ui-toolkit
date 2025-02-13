@@ -1,7 +1,7 @@
 "use client";
 
 import { Copy } from "lucide-react";
-import { cn } from "@/utils";
+import { cn } from "@/utils/common/cn";
 import { toast } from "sonner";
 
 interface TextWithCopyProps {

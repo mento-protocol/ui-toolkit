@@ -1,5 +1,5 @@
 import BaseComponentProps from "@/components/interfaces/base-component-props.interface";
-import { cn } from "@/utils";
+import { cn } from "@/utils/common/cn";
 
 interface TableDividerProps extends BaseComponentProps {
   fullWidth?: boolean;

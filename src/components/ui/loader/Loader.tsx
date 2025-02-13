@@ -1,5 +1,5 @@
-import { cn } from "@/utils";
-import { IMentoIcon, MentoIcon } from "../_icons";
+import { cn } from "@/utils/common/cn";
+import { IMentoIcon, MentoIcon } from "@/components/ui/_icons";
 
 interface ILoader extends IMentoIcon {
   className?: string;

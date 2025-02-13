@@ -9,17 +9,17 @@ import { useAccount } from "wagmi";
 
 import { useChainModal } from "@rainbow-me/rainbowkit";
 import { toast } from "sonner";
-import { MobileAccordionMenu } from "../mobile-accordion-menu/MobileAccordionMenu";
-import { DisconnectButton } from "../disconnect-button/DisconnectButton";
-import { ConnectButtonMobile } from "../connect-button/ConnectButtonMobile";
-import { ThemeSwitch } from "../theme-switch/ThemeSwitch";
+import { MobileAccordionMenu } from "@/components/ui/mobile-accordion-menu/MobileAccordionMenu";
+import { DisconnectButton } from "@/components/ui/disconnect-button/DisconnectButton";
+import { ConnectButtonMobile } from "@/components/ui/connect-button/ConnectButtonMobile";
+import { ThemeSwitch } from "@/components/ui/theme-switch/ThemeSwitch";
 import { links } from "@/config";
-import { ChainIcon, CopyIcon, DiscordIcon, GithubIcon, MentoLogoIcon, TwitterIcon } from "../_icons";
-import { cn } from "@/utils";
-import { Avatar } from "../avatar/Avatar";
-import WalletHelper from "../_helpers/wallet.helper";
-import NumbersService from "../_helpers/numbers.service";
-import { TokenBalance } from "../connect-button/ConnectButton";
+import { ChainIcon, CopyIcon, DiscordIcon, GithubIcon, MentoLogoIcon, TwitterIcon } from "@/components/ui/_icons";
+import { cn } from "@/utils/common/cn";
+import { Avatar } from "@/components/ui/avatar/Avatar";
+import WalletHelper from "@/components/ui/_helpers/wallet.helper";
+import NumbersService from "@/components/ui/_helpers/numbers.service";
+import { type TokenBalance } from "@/components/ui/connect-button/ConnectButton";
 import CopyToClipboard from "react-copy-to-clipboard";
 
 const variants = {

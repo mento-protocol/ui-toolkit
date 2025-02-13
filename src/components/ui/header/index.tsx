@@ -2,9 +2,9 @@ import { MobileHeader } from "./mobile-header";
 import HeaderNav from "./header-nav";
 
 import Link from "next/link";
-import { MaxWidthWrapper } from "../max-width-wrapper/MaxWidthWrapper";
-import { MentoLogoIcon } from "../_icons";
-import { ConnectButton, TokenBalance } from "../connect-button/ConnectButton";
+import { MaxWidthWrapper } from "@/components/ui/max-width-wrapper/MaxWidthWrapper";
+import { MentoLogoIcon } from "@/components/ui/_icons";
+import { ConnectButton, type TokenBalance } from "@/components/ui/connect-button/ConnectButton";
 
 export interface HeaderProps {
   mentoBalance: TokenBalance;

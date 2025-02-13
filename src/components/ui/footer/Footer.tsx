@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { DiscordIcon, GithubIcon, MentoLogoIcon, TwitterIcon } from "../_icons";
-import { ThemeSwitch } from "../theme-switch/ThemeSwitch";
-import { MobileAccordionMenu } from "../mobile-accordion-menu/MobileAccordionMenu";
+import { DiscordIcon, GithubIcon, MentoLogoIcon, TwitterIcon } from "@/components/ui/_icons";
+import { ThemeSwitch } from "@/components/ui/theme-switch/ThemeSwitch";
+import { MobileAccordionMenu } from "@/components/ui/mobile-accordion-menu/MobileAccordionMenu";
 import { links } from "@/config";
 
 export interface FooterProps {

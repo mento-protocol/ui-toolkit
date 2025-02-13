@@ -1,6 +1,6 @@
 import BaseComponentProps from "@/components/interfaces/base-component-props.interface";
-import { cn } from "@/utils";
-import { IndexWrapperIcon } from "../_icons";
+import { cn } from "@/utils/common/cn";
+import { IndexWrapperIcon } from "@/components/ui/_icons";
 
 interface StepCounterProps extends BaseComponentProps {}
 

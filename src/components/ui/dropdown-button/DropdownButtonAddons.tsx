@@ -1,5 +1,5 @@
 import BaseComponentProps from "@/components/interfaces/base-component-props.interface";
-import { cn } from "@/utils/common";
+import { cn } from "@/utils/common/cn";
 
 export const Dropdown = ({
   children,

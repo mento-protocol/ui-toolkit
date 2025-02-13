@@ -1,4 +1,4 @@
-import { cn } from "@/utils";
+import { cn } from "@/utils/common/cn";
 import { ReactNode, useMemo, useRef } from "react";
 
 interface SeeAllProps {

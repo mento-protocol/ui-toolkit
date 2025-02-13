@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { cn } from "@/utils";
+import { cn } from "@/utils/common/cn";
 import { type BaseIconProps } from "./base-icon-interface";
 
 export const ExclamationIcon = forwardRef<SVGSVGElement, BaseIconProps>(

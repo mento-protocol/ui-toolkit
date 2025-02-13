@@ -1,11 +1,11 @@
 "use client";
 
 import { links } from "@/config";
-import { cn } from "@/utils";
+import { cn } from "@/utils/common/cn";
 import { Disclosure } from "@headlessui/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ChevronIcon } from "../_icons";
+import { ChevronIcon } from "@/components/ui/_icons";
 
 const mobileMenuAccordionMenuItems = [
   {

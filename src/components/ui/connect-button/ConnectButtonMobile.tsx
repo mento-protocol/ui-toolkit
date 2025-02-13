@@ -1,9 +1,8 @@
 "use client";
 import { ConnectButton as RainbowConnectButton } from "@rainbow-me/rainbowkit";
-import { Button } from "../button/Button";
-import { ButtonProps } from "../button/Button";
-import { cn } from "@/utils";
-import { ChevronIcon } from "../_icons";
+import { Button, type ButtonProps } from "@/components/ui/button/Button";
+import { cn } from "@/utils/common/cn";
+import { ChevronIcon } from "@/components/ui/_icons";
 
 type ConnectButtonProps = ButtonProps;
 

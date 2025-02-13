@@ -1,16 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { forwardRef } from "react";
 import { useDisconnect } from "wagmi";
-import { Button, ButtonProps } from "../button/Button";
+import { Button, type ButtonProps } from "@/components/ui/button/Button";
 
-const DisconnectButton = forwardRef<HTMLButtonElement, ButtonProps>(
-  (props, ref) => {
-    const { disconnect } = useDisconnect();
-    return <Button ref={ref} {...props} onClick={() => disconnect()} />;
-  }
-);
+export const DisconnectButton = (props: ButtonProps) => {
+  const { disconnect } = useDisconnect();
+  return <Button {...props} onClick={() => disconnect()} />;
+};
+
 DisconnectButton.displayName = "DisconnectButton";
-
-export { DisconnectButton };

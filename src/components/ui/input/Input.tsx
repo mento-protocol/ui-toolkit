@@ -2,7 +2,7 @@ import { type ReactNode } from "react";
 import { cva } from "class-variance-authority";
 import BaseComponentProps from "@/components/interfaces/base-component-props.interface";
 import BaseInputProps from "@/components/interfaces/base-input-props.interface";
-import { cn } from "@/utils";
+import { cn } from "@/utils/common/cn";
 
 interface InputProps extends BaseComponentProps, BaseInputProps {
   type: "text" | "email" | "password" | "number" | "tel" | "url";

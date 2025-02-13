@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { cn } from "@/utils";
+import { cn } from "@/utils/common/cn";
 
 type Type = "success" | "info" | "warning" | "danger";
 

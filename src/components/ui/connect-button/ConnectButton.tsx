@@ -9,13 +9,13 @@ import {
   MentoIcon,
   ChainIcon,
   AccountIcon,
-} from "../_icons";
-import { cn } from "@/utils";
-import { Button } from "../button/Button";
-import { DropdownButton } from "../dropdown-button/DropdownButton";
+} from "@/components/ui/_icons";
+import { cn } from "@/utils/common/cn";
+import { Button } from "@/components/ui/button/Button";
+import { DropdownButton } from "@/components/ui/dropdown-button/DropdownButton";
 import BaseComponentProps from "@/components/interfaces/base-component-props.interface";
-import { Avatar } from "../avatar/Avatar";
-import WalletHelper from "../_helpers/wallet.helper";
+import { Avatar } from "@/components/ui/avatar/Avatar";
+import WalletHelper from "@/components/ui/_helpers/wallet.helper";
 
 export interface TokenBalance {
   symbol: string;

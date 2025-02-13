@@ -1,9 +1,9 @@
 "use client";
 import BaseComponentProps from "@/components/interfaces/base-component-props.interface";
-import { cn } from "@/utils";
+import { cn } from "@/utils/common/cn";
 import { usePathname } from "next/navigation";
-import { Button } from "../button/Button";
-import { ChevronIcon, DiscordIcon, LearnMoreIcon } from "../_icons";
+import { Button } from "@/components/ui/button/Button";
+import { ChevronIcon, DiscordIcon, LearnMoreIcon } from "@/components/ui/_icons";
 import { links } from "@/config/links";
 
 interface LearnMoreProps extends BaseComponentProps {}

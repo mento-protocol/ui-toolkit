@@ -1,1 +1,1 @@
-export * from "./UseOutsideAlerter";
+export { default as useOutsideAlerter } from "./UseOutsideAlerter";

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { VariantProps, cva } from "class-variance-authority";
-import { cn } from "@/utils";
+import { cn } from "@/utils/common/cn";
 import { RefCallBack } from "react-hook-form";
 
 type CurrencyInputProps = React.InputHTMLAttributes<HTMLInputElement> &

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { forwardRef } from "react";
-import { ChevronIcon } from "../_icons/chevron.icon";
+import { ChevronIcon } from "@/components/ui/_icons";
 import { cn } from "@/utils/common/cn";
 
 interface ExpandableProps extends Omit<React.ComponentProps<"header">, "title"> {
