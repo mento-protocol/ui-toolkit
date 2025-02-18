@@ -1,44 +1,32 @@
-import { forwardRef } from "react";
 import { cn } from "@/utils/common/cn";
+import { type BaseIconProps } from "./base-icon-interface";
 
-interface MenuIconProps {
-  width?: number;
-  height?: number;
-  opened: boolean;
-  className?: string;
-}
-
-export const MenuIcon = forwardRef<HTMLDivElement, MenuIconProps>(
-  (
-    {
-      width = 20,
-      height = 14,
-      opened,
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    return (
-      <div
-        ref={ref}
-        style={{
-          width: `${width}px`,
-          height: `${height}px`,
-        }}
-        className={cn(
-          "group relative inline-block h-[24px] w-[24px] cursor-pointer",
-          opened && "opened",
-          className
-        )}
-        {...props}
-      >
-        <span className="absolute top-0 h-[2px] w-full duration-300 group-[.opened]:top-[50%] group-[.opened]:translate-y-[-50%] group-[.opened]:rotate-45" />
-        <span className="absolute top-[50%] h-[2px] w-full translate-y-[-50%] duration-300 group-[.opened]:opacity-0 " />
-        <span className="absolute bottom-0 h-[2px] w-full duration-300 group-[.opened]:top-[50%] group-[.opened]:translate-y-[-50%]  group-[.opened]:-rotate-45" />
-      </div>
-    );
-  }
-);
+export const MenuIcon = ({
+  width = 33,
+  height = 32,
+  strokeClass = "stroke-foreground dark:stroke-foreground-dark",
+  className,
+  ...props
+}: BaseIconProps) => {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 33 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={cn(className)}
+      {...props}
+    >
+      <path
+        d="M4.5 16H28.5M4.5 8H28.5M4.5 24H28.5"
+        className={strokeClass}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
 
 MenuIcon.displayName = "MenuIcon";

@@ -1,41 +1,39 @@
-import { forwardRef } from "react";
 import { cn } from "@/utils/common/cn";
 import { type BaseIconProps } from "./base-icon-interface";
 
-export const LightModeIcon = forwardRef<SVGSVGElement, BaseIconProps>(
-  (
-    {
-      width = 13,
-      height = 13,
-      strokeClass = "stroke-black",
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    return (
-      <svg
-        ref={ref}
-        xmlns="http://www.w3.org/2000/svg"
-        width={width}
-        height={height}
-        viewBox="0 0 13 13"
-        fill="none"
-        className={cn(className)}
-        {...props}
-      >
-        <g clipPath="url(#clip0_5629_3418)">
-          <path
-            d="M10.21 6.54232H10.6266M6.04329 2.37565V1.95898M6.04329 11.1257V10.709M9.37663 9.87565L8.95996 9.45898M9.37663 3.20898L8.95996 3.62565M2.70996 9.87565L3.12663 9.45898M2.70996 3.20898L3.12663 3.62565M1.45996 6.54232H1.87663M6.04329 9.04232C6.70633 9.04232 7.34222 8.77893 7.81106 8.31008C8.2799 7.84124 8.54329 7.20536 8.54329 6.54232C8.54329 5.87928 8.2799 5.24339 7.81106 4.77455C7.34222 4.30571 6.70633 4.04232 6.04329 4.04232C5.38025 4.04232 4.74437 4.30571 4.27553 4.77455C3.80669 5.24339 3.54329 5.87928 3.54329 6.54232C3.54329 7.20536 3.80669 7.84124 4.27553 8.31008C4.74437 8.77893 5.38025 9.04232 6.04329 9.04232Z"
-            className={strokeClass}
-            strokeWidth="1.33"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </g>
-      </svg>
-    );
-  }
-);
+export const LightModeIcon = ({
+  width = 33,
+  height = 32,
+  strokeClass = "stroke-foreground dark:stroke-foreground-dark",
+  className,
+  ...props
+}: BaseIconProps) => {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 33 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={cn(className)}
+      {...props}
+    >
+      <path
+        d="M16.5 22.6667C20.0183 22.6667 22.8333 19.8517 22.8333 16.3333C22.8333 12.815 20.0183 10 16.5 10C12.9816 10 10.1666 12.815 10.1666 16.3333C10.1666 19.8517 12.9816 22.6667 16.5 22.6667Z"
+        className={strokeClass}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.5 5.33331V2.66666M8.43328 8.26666L6.49995 6.33333M5.49995 16.3333H2.83328M8.43328 24.4L6.49995 26.3333M16.5 31V28.3333M24.5666 24.4L26.5 26.3333M30.1666 16.3333H27.5M24.5666 8.26666L26.5 6.33333"
+        className={strokeClass}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
 
 LightModeIcon.displayName = "LightModeIcon";

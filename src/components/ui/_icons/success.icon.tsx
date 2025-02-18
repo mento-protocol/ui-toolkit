@@ -1,27 +1,32 @@
-import { forwardRef } from "react";
 import { cn } from "@/utils/common/cn";
 import { type BaseIconProps } from "./base-icon-interface";
 
-export const SuccessIcon = forwardRef<SVGSVGElement, BaseIconProps>(
-  ({ className, ...props }, ref) => (
+export const SuccessIcon = ({
+  width = 33,
+  height = 32,
+  strokeClass = "stroke-foreground dark:stroke-foreground-dark",
+  className,
+  ...props
+}: BaseIconProps) => {
+  return (
     <svg
-      ref={ref}
+      width={width}
+      height={height}
+      viewBox="0 0 33 32"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 52 52"
       className={cn(className)}
       {...props}
     >
-      <circle cx="26" cy="26" r="25" className="fill-light-green" />
       <path
-        className="stroke-[black]"
-        d="M14.1 27.2l7.1 7.2 16.7-16.8"
-        fill="none"
-        strokeWidth="2"
-        strokeLinecap="butt"
-        strokeLinejoin="miter"
+        d="M27.1667 9.33334L12.8334 23.6667L5.83337 16.6667"
+        className={strokeClass}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
-  )
-);
+  );
+};
 
 SuccessIcon.displayName = "SuccessIcon";

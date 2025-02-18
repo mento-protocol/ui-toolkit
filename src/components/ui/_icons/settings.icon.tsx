@@ -1,7 +1,31 @@
-import { forwardRef } from "react";
 import { cn } from "@/utils/common/cn";
 import { type BaseIconProps } from "./base-icon-interface";
 
+export const SettingsIcon = ({
+  width = 33,
+  height = 32,
+  strokeClass = "stroke-foreground dark:stroke-foreground-dark",
+  className,
+  ...props
+}: BaseIconProps) => {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 33 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={cn(className)}
+      {...props}
+    >
+      <path
+        d="M16.5 20C18.7091 20 20.5 18.2091 20.5 16C20.5 13.7909 18.7091 12 16.5 12C14.2909 12 12.5 13.7909 12.5 16C12.5 18.2091 14.2909 20 16.5 20Z"
+        className={strokeClass}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
 export const SettingsIcon = forwardRef<SVGSVGElement, BaseIconProps>(
   (
     {

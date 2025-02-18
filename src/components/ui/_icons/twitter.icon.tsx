@@ -1,41 +1,29 @@
-import { forwardRef } from "react";
 import { cn } from "@/utils/common/cn";
 import { type BaseIconProps } from "./base-icon-interface";
 
-export const TwitterIcon = forwardRef<SVGSVGElement, BaseIconProps>(
-  (
-    {
-      width = 41,
-      height = 41,
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    return (
-      <svg
-        ref={ref}
-        width={width}
-        height={height}
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 41 41"
-        fill="none"
-        className={cn(className)}
-        {...props}
-      >
-        <rect
-          width="40"
-          height="40"
-          transform="translate(0.458984 0.960938)"
-          fill="none"
-        />
-        <path
-          className={"fill-black dark:fill-white"}
-          d="M10.5077 11.6016L18.2295 21.9263L10.459 30.3208H12.2078L19.0109 22.9713L24.5076 30.3208H30.459L22.3027 19.4153L29.5355 11.6016H27.7867L21.5214 18.3703L16.4591 11.6016H10.5077ZM13.0795 12.8898H15.8136L27.8868 29.0324H25.1527L13.0795 12.8898Z"
-        />
-      </svg>
-    );
-  }
-);
+export const TwitterIcon = ({
+  width = 33,
+  height = 32,
+  fillClass = "fill-black dark:fill-white",
+  className,
+  ...props
+}: BaseIconProps) => {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 33 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={cn(className)}
+      {...props}
+    >
+      <path
+        d="M28.5 8.54666C27.5483 8.99666 26.5283 9.30666 25.4617 9.44666C26.5617 8.78666 27.3883 7.72666 27.7817 6.46C26.7617 7.08 25.6283 7.52 24.4283 7.77333C23.4483 6.70666 22.0617 6.04666 20.5 6.04666C17.5417 6.04666 15.1483 8.44 15.1483 11.4067C15.1483 11.8483 15.1933 12.2733 15.2917 12.68C10.8367 12.4533 6.89167 10.3267 4.25 7.14666C3.76667 7.96666 3.48333 8.92666 3.48333 9.94666C3.48333 11.8733 4.42167 13.5733 5.86667 14.5733C5.01667 14.5733 4.21667 14.3333 3.5 13.9467V13.9933C3.5 16.5933 5.32833 18.7467 7.75833 19.2533C6.99614 19.4544 6.19846 19.4855 5.42333 19.3433C5.81447 20.3971 6.50468 21.3132 7.40693 21.9765C8.30917 22.6398 9.38166 23.0185 10.4917 23.0667C8.5159 24.6235 6.08752 25.4621 3.58333 25.4533C3.13333 25.4533 2.69167 25.4267 2.25 25.3667C4.71667 26.96 7.61667 27.8733 10.7283 27.8733C20.5 27.8733 25.8617 19.6 25.8617 12.4533C25.8617 12.2133 25.8533 11.98 25.8433 11.7467C26.8883 10.9933 27.7817 10.0467 28.5 8.96666V8.54666Z"
+        className={fillClass}
+      />
+    </svg>
+  );
+};
 
 TwitterIcon.displayName = "TwitterIcon";

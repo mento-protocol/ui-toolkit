@@ -1,46 +1,39 @@
-import { forwardRef } from "react";
 import { cn } from "@/utils/common/cn";
 import { type BaseIconProps } from "./base-icon-interface";
 
-export const ChainIcon = forwardRef<SVGSVGElement, BaseIconProps>(
-  (
-    {
-      width = 32,
-      height = 32,
-      strokeClass = "stroke-mento-dark dark:stroke-white",
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    return (
-      <svg
-        ref={ref}
-        className={cn(className)}
-        height={height}
-        width={width}
-        viewBox="0 0 32 32"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}
-      >
-        <path
-          d="M15.3521 9.5712L17.6045 7.31878C18.5581 6.44958 19.81 5.98125 21.1 6.01111C22.39 6.04098 23.6189 6.56674 24.5313 7.47914C25.4437 8.39155 25.9695 9.62043 25.9993 10.9104C26.0292 12.2004 25.5609 13.4523 24.6917 14.4059L21.4723 17.6139C21.0083 18.0797 20.4569 18.4492 19.8498 18.7013C19.2427 18.9535 18.5918 19.0833 17.9344 19.0833C17.277 19.0833 16.6261 18.9535 16.0189 18.7013C15.4118 18.4492 14.8605 18.0797 14.3965 17.6139"
-          className={strokeClass}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M16.6486 22.4486L14.3962 24.701C13.4425 25.5702 12.1906 26.0385 10.9006 26.0087C9.61066 25.9788 8.38178 25.4531 7.46938 24.5406C6.55697 23.6282 6.03121 22.3994 6.00135 21.1094C5.97148 19.8194 6.43981 18.5675 7.30901 17.6138L10.5284 14.4058C10.9924 13.9401 11.5437 13.5706 12.1508 13.3185C12.758 13.0663 13.4089 12.9365 14.0663 12.9365C14.7237 12.9365 15.3746 13.0663 15.9817 13.3185C16.5888 13.5706 17.1402 13.9401 17.6042 14.4058"
-          className={strokeClass}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  }
-);
+export const ChainIcon = ({
+  width = 33,
+  height = 32,
+  strokeClass = "stroke-foreground dark:stroke-foreground-dark",
+  className,
+  ...props
+}: BaseIconProps) => {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 33 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={cn(className)}
+      {...props}
+    >
+      <path
+        d="M16.5 10.6667C17.4205 9.74619 18.5809 9.15731 19.8381 8.97803C21.0953 8.79875 22.3835 9.03824 23.5089 9.66431C24.6343 10.2904 25.5382 11.2698 26.0939 12.4496C26.6496 13.6294 26.8287 14.9444 26.6074 16.2212C26.3861 17.498 25.7759 18.6733 24.8587 19.5987C23.9415 20.5241 22.7714 21.1447 21.4967 21.3778C20.222 21.6109 18.9059 21.4441 17.7219 20.8994C16.5379 20.3546 15.5514 19.4599 14.9333 18.3467"
+        className={strokeClass}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.5 21.3333C15.5795 22.2538 14.4191 22.8427 13.1619 23.022C11.9047 23.2013 10.6165 22.9618 9.49111 22.3357C8.36574 21.7096 7.46178 20.7302 6.90609 19.5504C6.35039 18.3706 6.17133 17.0556 6.39261 15.7788C6.61389 14.502 7.22415 13.3267 8.14134 12.4013C9.05852 11.4759 10.2286 10.8553 11.5033 10.6222C12.778 10.3891 14.0941 10.5559 15.2781 11.1006C16.4621 11.6454 17.4486 12.5401 18.0667 13.6533"
+        className={strokeClass}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
 
 ChainIcon.displayName = "ChainIcon";
