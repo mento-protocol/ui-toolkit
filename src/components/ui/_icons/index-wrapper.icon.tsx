@@ -1,3 +1,4 @@
+import React from "react";
 import { forwardRef } from "react";
 import { cn } from "@/utils/common/cn";
 import { type BaseIconProps } from "./base-icon-interface";

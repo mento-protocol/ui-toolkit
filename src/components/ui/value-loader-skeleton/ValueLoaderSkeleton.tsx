@@ -1,5 +1,7 @@
-import { cn } from "@/utils/common/cn";
+"use client";
+
 import React from "react";
+import { cn } from "@/utils/common/cn";
 
 const ValueLoaderSkeleton = ({
   children,

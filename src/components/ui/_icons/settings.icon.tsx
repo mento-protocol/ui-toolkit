@@ -1,3 +1,4 @@
+import React from "react";
 import { cn } from "@/utils/common/cn";
 import { type BaseIconProps } from "./base-icon-interface";
 
@@ -26,27 +27,6 @@ export const SettingsIcon = ({
         strokeLinejoin="round"
       />
       <path
-export const SettingsIcon = forwardRef<SVGSVGElement, BaseIconProps>(
-  (
-    {
-      width = 32,
-      height = 32,
-      fillClass = "fill-mento-dark dark:fill-white",
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    return (
-      <svg
-        ref={ref}
-        className={cn(className, fillClass)}
-        height={height}
-        width={width}
-        viewBox="-14 -14 82 82"
-        {...props}
-      >
-        <path
           d="M51.22,21h-5.052c-0.812,0-1.481-0.447-1.792-1.197s-0.153-1.54,0.42-2.114l3.572-3.571
            c0.525-0.525,0.814-1.224,0.814-1.966c0-0.743-0.289-1.441-0.814-1.967l-4.553-4.553c-1.05-1.05-2.881-1.052-3.933,0l-3.571,3.571
            c-0.574,0.573-1.366,0.733-2.114,0.421C33.447,9.313,33,8.644,33,7.832V2.78C33,1.247,31.753,0,30.22,0H23.78
@@ -75,9 +55,8 @@ export const SettingsIcon = forwardRef<SVGSVGElement, BaseIconProps>(
           d="M27,18c-4.963,0-9,4.037-9,9s4.037,9,9,9s9-4.037,9-9S31.963,18,27,18z M27,34c-3.859,0-7-3.141-7-7s3.141-7,7-7
            s7,3.141,7,7S30.859,34,27,34z"
         />
-      </svg>
-    );
-  }
-);
+    </svg>
+  );
+};
 
 SettingsIcon.displayName = "SettingsIcon";

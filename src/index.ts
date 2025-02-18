@@ -5,5 +5,5 @@ export {
     cn,
 } from "./utils";
 // export * from "./themes";
-// export * from "./config";
+export * from "./config";
 export { default as tailwindConfig } from "./tailwind.default.config";

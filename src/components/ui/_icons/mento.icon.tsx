@@ -1,26 +1,55 @@
-import { cn } from "@/utils/common/cn";
-import { type BaseIconProps } from "./base-icon-interface";
+import { VariantProps, cva } from "class-variance-authority";
+import { BaseIconProps } from "./base-icon-interface";
+
+const variants = cva("", {
+  variants: {
+    backgroundColor: {
+      default: "fill-none",
+      blue: "fill-mento-blue",
+      cyan: "fill-mento-cyan",
+      bright: "fill-mento-bright",
+      mint: "fill-mento-blue",
+      blush: "fill-mento-blush",
+    },
+  },
+  defaultVariants: {
+    backgroundColor: "default",
+  },
+});
+
+export interface IMentoIcon
+  extends Omit<BaseIconProps, "backgroundColor">,
+    VariantProps<typeof variants> {
+  logoColor?: string;
+}
 
 export const MentoIcon = ({
-  width = 33,
-  height = 32,
-  fillClass = "fill-black dark:fill-white",
+  width = 60,
+  height = 60,
+  backgroundColor = "default",
+  logoColor = "fill-mento-dark",
   className,
-  ...props
-}: BaseIconProps) => {
+}: IMentoIcon) => {
   return (
     <svg
+      className={className}
       width={width}
       height={height}
-      viewBox="0 0 33 32"
+      viewBox="0 0 63 63"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={cn(className)}
-      {...props}
     >
+      <circle
+        className={variants({
+          backgroundColor,
+        })}
+        cx="31.4336"
+        cy="31.5796"
+        r="31.1016"
+      />
       <path
-        d="M16.5 32C25.3366 32 32.5 24.8366 32.5 16C32.5 7.16344 25.3366 0 16.5 0C7.66344 0 0.5 7.16344 0.5 16C0.5 24.8366 7.66344 32 16.5 32Z"
-        className={fillClass}
+        className={logoColor}
+        d="M41.162 41.2452V51.5796H26.1765C17.7169 51.5796 11.4326 45.5006 11.4326 36.9899L11.4326 21.9139H21.705V34.5583C21.705 38.8136 24.3637 41.2452 28.5935 41.2452H41.162ZM21.705 21.9139V11.5796L36.6905 11.5796C45.1501 11.5796 51.4344 17.6586 51.4344 26.1693V41.2452H41.162V28.6009C41.162 24.3455 38.5033 21.9139 34.2735 21.9139H21.705Z"
       />
     </svg>
   );

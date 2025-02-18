@@ -1,5 +1,7 @@
-import { cn } from "@/utils/common/cn";
+"use client";
+
 import { ReactNode, useMemo, useRef } from "react";
+import { cn } from "@/utils/common/cn";
 
 interface SeeAllProps {
   isOpen: boolean;

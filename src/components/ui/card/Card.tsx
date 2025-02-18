@@ -1,6 +1,5 @@
 import * as React from "react";
 import { cn } from "@/utils/common/cn";
-import { forwardRef } from "react";
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   block?: boolean;
@@ -8,12 +7,8 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   noBorderMobile?: boolean;
 }
 
-const Card = forwardRef<
-  HTMLDivElement,
-  CardProps
->(({ className, block, transparent, ...props }, ref) => (
+const Card = ({ className, block, transparent, ...props }: CardProps) => (
   <div
-    ref={ref}
     className={cn(
       "rounded-lg border border-gray-light bg-white dark:bg-black-off p-5",
       block && "w-full",
@@ -22,32 +17,24 @@ const Card = forwardRef<
     )}
     {...props}
   />
-));
+);
 Card.displayName = "Card";
 
-const CardHeader = forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
+const CardHeader = ({ className, ...props }: CardProps) => (
   <header
-    ref={ref}
     className={cn("rounded-lg rounded-r-lg bg-[inherit]", className)}
     {...props}
   />
-));
+);
 CardHeader.displayName = "CardHeader";
 
-const CardFooter = forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, style, ...props }, ref) => (
+const CardFooter = ({ className, style, ...props }: CardProps) => (
   <footer
-    ref={ref}
     className={className}
     style={style}
     {...props}
   />
-));
+);
 CardFooter.displayName = "CardFooter";
 
 export { Card, CardHeader, CardFooter };

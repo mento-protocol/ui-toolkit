@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { forwardRef } from "react";
 import { ChevronIcon } from "@/components/ui/_icons";
 import { cn } from "@/utils/common/cn";
 
@@ -9,12 +8,11 @@ interface ExpandableProps extends Omit<React.ComponentProps<"header">, "title"> 
   title: React.ReactNode | string;
 }
 
-const Expandable = forwardRef<HTMLDivElement, ExpandableProps>(
-  ({ children, className, title, ...props }, ref) => {
-    const [opened, setOpened] = React.useState(false);
+const Expandable = ({ children, className, title}: ExpandableProps) => {
+  const [opened, setOpened] = React.useState(false);
 
     return (
-      <div ref={ref} className={className} {...props}>
+      <div className={className}>
         <header
           onClick={() => setOpened(!opened)}
           className="flex cursor-pointer flex-row items-center justify-between pt-x3 md:pt-0"
@@ -37,10 +35,9 @@ const Expandable = forwardRef<HTMLDivElement, ExpandableProps>(
         >
           {children}
         </div>
-      </div>
-    );
-  }
-);
+    </div>
+  );
+};
 Expandable.displayName = "Expandable";
 
 export { Expandable }; 
