@@ -20,5 +20,4 @@ const ValueLoaderSkeleton = ({
   );
 };
 
-ValueLoaderSkeleton.displayName = "ValueLoaderSkeleton";
 export default ValueLoaderSkeleton;

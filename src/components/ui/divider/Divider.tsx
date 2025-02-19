@@ -18,6 +18,5 @@ const Divider = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>
     );
   }
 );
-Divider.displayName = "Divider";
 
 export { Divider }; 

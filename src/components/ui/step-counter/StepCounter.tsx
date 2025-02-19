@@ -19,4 +19,3 @@ export const StepCounter = ({ children, className }: StepCounterProps) => {
   );
 };
 
-StepCounter.displayName = "StepCounter";

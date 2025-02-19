@@ -2,13 +2,20 @@
 
 import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Header } from "@/components/ui/header/Header";
+import { Inter } from "next/font/google";
 import { Footer } from "@/components/ui/footer/Footer";
 import '@rainbow-me/rainbowkit/styles.css';
 import './globals.css';
 import { mentoRainbowKitProviderConfig, mentoWagmiConfig, rainbowKitTheme } from "@/config";
 import { WagmiProvider } from "wagmi";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export default function RootLayout({
   children,
@@ -18,7 +25,7 @@ export default function RootLayout({
   const queryClient = new QueryClient();
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html className={`${inter.variable} w-full overscroll-none`} lang="en" suppressHydrationWarning>
       <body className="min-h-screen flex flex-col">
         <ThemeProvider
           attribute="class"

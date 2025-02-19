@@ -38,6 +38,5 @@ const Expandable = ({ children, className, title}: ExpandableProps) => {
     </div>
   );
 };
-Expandable.displayName = "Expandable";
 
 export { Expandable }; 

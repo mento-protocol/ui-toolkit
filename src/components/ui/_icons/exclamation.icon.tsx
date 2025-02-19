@@ -8,8 +8,7 @@ export const ExclamationIcon = ({
   strokeClass = "stroke-foreground dark:stroke-foreground-dark",
   className,
   ...props
-}: BaseIconProps) => {
-  return (
+}: BaseIconProps) => (
     <svg
       width={width}
       height={height}
@@ -27,7 +26,5 @@ export const ExclamationIcon = ({
         strokeLinejoin="round"
       />
     </svg>
-  );
-};
+);
 
-ExclamationIcon.displayName = "ExclamationIcon";

@@ -159,7 +159,7 @@ export const themeConfig = {
       },
       fontFamily: {
         fg: ["var(--font-fg)"],
-        inter: ["var(--font-inter)"],
+        inter: ["var(--font-inter-kit)"],
       },
       spacing: {
         ...generateCustomSpacing(),

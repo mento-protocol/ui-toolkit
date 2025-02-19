@@ -3,7 +3,7 @@
 import * as React from "react";
 import { DayPicker } from "react-day-picker";
 import { cn } from "@/utils/common/cn";
-import { ChevronIcon } from "@/components/ui/_icons";
+import { ChevronIcon } from "../_icons/chevron.icon";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
@@ -51,13 +51,12 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        NextMonthButton: () => <ChevronIcon direction="left" className="h-4 w-4" />,
-        PreviousMonthButton: () => <ChevronIcon direction="right" className="h-4 w-4" />,
+        IconLeft: () => <ChevronIcon direction="left" className="h-4 w-4" />,
+        IconRight: () => <ChevronIcon direction="right" className="h-4 w-4" />,
       }}
       {...props}
     />
   );
 }
-Calendar.displayName = "Calendar";
 
 export { Calendar }; 

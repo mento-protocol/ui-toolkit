@@ -39,4 +39,3 @@ export const Toaster = () => {
   );
 };
 
-Toaster.displayName = "Toaster";

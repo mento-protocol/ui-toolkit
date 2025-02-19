@@ -30,4 +30,3 @@ export const DarkModeIcon = ({
   );
 };
 
-DarkModeIcon.displayName = "DarkModeIcon";

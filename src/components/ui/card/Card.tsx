@@ -7,18 +7,18 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   noBorderMobile?: boolean;
 }
 
-const Card = ({ className, block, transparent, ...props }: CardProps) => (
+const Card = ({ className, block, transparent, noBorderMobile, ...props }: CardProps) => (
   <div
     className={cn(
       "rounded-lg border border-gray-light bg-white dark:bg-black-off p-5",
       block && "w-full",
       transparent && "bg-transparent",
+      noBorderMobile && "border-none md:border",
       className
     )}
     {...props}
   />
 );
-Card.displayName = "Card";
 
 const CardHeader = ({ className, ...props }: CardProps) => (
   <header
@@ -26,7 +26,6 @@ const CardHeader = ({ className, ...props }: CardProps) => (
     {...props}
   />
 );
-CardHeader.displayName = "CardHeader";
 
 const CardFooter = ({ className, style, ...props }: CardProps) => (
   <footer
@@ -34,7 +33,6 @@ const CardFooter = ({ className, style, ...props }: CardProps) => (
     style={style}
     {...props}
   />
-);
-CardFooter.displayName = "CardFooter";
+);Card
 
 export { Card, CardHeader, CardFooter };

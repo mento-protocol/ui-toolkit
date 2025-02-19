@@ -8,8 +8,7 @@ export const EmptyProposalsIcon = ({
   strokeClass = "stroke-foreground dark:stroke-foreground-dark",
   className,
   ...props
-}: BaseIconProps) => {
-  return (
+}: BaseIconProps) => (
     <svg
       width={width}
       height={height}
@@ -34,7 +33,4 @@ export const EmptyProposalsIcon = ({
         strokeLinejoin="round"
       />
     </svg>
-  );
-};
-
-EmptyProposalsIcon.displayName = "EmptyProposalsIcon";
+);

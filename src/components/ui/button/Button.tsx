@@ -4,7 +4,7 @@ import { cn } from "@/utils/common/cn";
 import Link from "next/link";
 
 export const buttonVariants = cva(
-  "relative block w-full select-none rounded-md border border-solid border-black px-x4 py-[18px] font-inter text-[15px]/[20px] text-black transition [transform-style:preserve-3d] hover:no-underline disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-gray-light disabled:text-black disabled:before:bg-black-off hover:[&>span]:text-[inherit]",
+  "font-inter relative block w-full select-none rounded-md border border-solid border-black px-x4 py-[18px] text-[15px]/[20px] text-black transition [transform-style:preserve-3d] hover:no-underline disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-gray-light disabled:text-black disabled:before:bg-black-off hover:[&>span]:text-[inherit]",
   {
     variants: {
       fullwidth: { true: "", false: "max-w-[200px]" },
@@ -107,4 +107,3 @@ export const Button = ({
   );
 };
 
-Button.displayName = "Button";

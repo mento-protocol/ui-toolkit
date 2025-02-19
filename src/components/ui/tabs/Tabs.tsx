@@ -84,11 +84,9 @@ export const TabList = ({
   );
 };
 
-TabList.displayName = "TabList";
 
 interface TabProps extends BaseComponentProps {}
 
 export const Tab = ({ className, children }: TabProps) => {
   return <div className={className}>{children}</div>;
 };
-Tab.displayName = "Tab";

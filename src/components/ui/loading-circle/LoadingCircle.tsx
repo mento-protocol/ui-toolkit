@@ -52,6 +52,5 @@ const LoadingCircle = React.forwardRef<HTMLDivElement, LoadingCircleProps>(
   },
 );
 
-LoadingCircle.displayName = "LoadingCircle";
 
 export { LoadingCircle }; 

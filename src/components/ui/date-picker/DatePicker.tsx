@@ -1,10 +1,7 @@
-"use client";
-
-import { Popover } from "@headlessui/react";
-import { Calendar, type CalendarProps } from "@/components/ui/calendar/Calendar";
-import { forwardRef } from "react";
 import * as React from "react";
-import { cn } from "@/utils/common/cn";
+import { Popover } from "@headlessui/react";
+import { Calendar, CalendarProps } from "../calendar/Calendar";
+import { cn } from "@/utils";
 
 type DatePickerProps = CalendarProps & {
   selected?: Date | null;
@@ -14,75 +11,87 @@ type DatePickerProps = CalendarProps & {
   onClose?: () => void;
 };
 
-interface DatePickerButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+interface DatePickerButtonProps {
+  children: React.ReactNode;
+  className?: string;
   closeButtonRef?: React.RefObject<HTMLButtonElement>;
 }
 
-interface DatePickerPanelProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface DatePickerPanelProps {
+  children: React.ReactNode;
+  className?: string;
+}
 
-const DatePickerButton = forwardRef<HTMLButtonElement, DatePickerButtonProps>(
-  ({ children, className, closeButtonRef, ...props }, ref) => {
-    return (
+const DatePickerButton: React.FC<DatePickerButtonProps> = ({
+  children,
+  className,
+  closeButtonRef,
+}) => {
+  return (
+    <>
       <Popover.Button
-        ref={closeButtonRef || ref}
+        ref={closeButtonRef}
         className={cn(
           "w-full rounded-[4px] border border-gray-light p-1 text-left",
-          className
+          className,
         )}
-        {...props}
       >
         {children}
       </Popover.Button>
-    );
+    </>
+  );
+};
+
+const DatePickerPanel: React.FC<DatePickerPanelProps> = ({
+  children,
+  className,
+}) => {
+  return <div className={cn("mt-2", className)}>{children}</div>;
+};
+
+export const DatePicker: React.FC<DatePickerProps> & {
+  Button: typeof DatePickerButton;
+  Panel: typeof DatePickerPanel;
+  className?: string;
+} = ({
+  onDayClick,
+  children,
+  className,
+  closeOnSelect = true,
+  onClose,
+  ...restProps
+}) => {
+  const buttonChild = React.Children.toArray(children).find(
+    (child) => React.isValidElement(child) && child.type === DatePickerButton,
+  );
+  const panelChild = React.Children.toArray(children).find(
+    (child) => React.isValidElement(child) && child.type === DatePickerPanel,
+  );
+
+  if (!buttonChild || !React.isValidElement(buttonChild)) {
+    throw new Error("DatePicker must have a DatePicker.Button as a child");
   }
-);
-DatePickerButton.displayName = "DatePickerButton";
 
-const DatePickerPanel = forwardRef<HTMLDivElement, DatePickerPanelProps>(
-  ({ children, className, ...props }, ref) => {
-    return (
-      <div ref={ref} className={cn("mt-2", className)} {...props}>
-        {children}
-      </div>
-    );
-  }
-);
-DatePickerPanel.displayName = "DatePickerPanel";
+  return (
+    <Popover onAbort={onClose} className={cn(className, "relative h-full")}>
+      {({ close }) => (
+        <>
+          {buttonChild}
+          <Popover.Panel className="absolute right-0 z-10 flex w-[300px] flex-col items-center rounded-[4px] border border-gray-light bg-white dark:bg-black-off">
+            <Calendar
+              {...restProps}
+              onDayClick={(date: Date) => {
+                if (closeOnSelect) close();
+                onDayClick(date);
+              }}
+            />
+            {panelChild}
+          </Popover.Panel>
+        </>
+      )}
+    </Popover>
+  );
+};
 
-const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
-  ({ onDayClick, children, className, closeOnSelect = true, onClose, ...restProps }, ref) => {
-    const buttonChild = React.Children.toArray(children).find(
-      (child) => React.isValidElement(child) && child.type === DatePickerButton
-    );
-    const panelChild = React.Children.toArray(children).find(
-      (child) => React.isValidElement(child) && child.type === DatePickerPanel
-    );
-
-    if (!buttonChild || !React.isValidElement(buttonChild)) {
-      throw new Error("DatePicker must have a DatePickerButton as a child");
-    }
-
-    return (
-      <Popover ref={ref} onAbort={onClose} className={cn(className, "relative h-full")}>
-        {({ close }) => (
-          <>
-            {buttonChild}
-            <Popover.Panel className="absolute right-0 z-10 flex w-[300px] flex-col items-center rounded-[4px] border border-gray-light bg-white dark:bg-black-off">
-              <Calendar
-                {...restProps}
-                onDayClick={(date: Date) => {
-                  if (closeOnSelect) close();
-                  onDayClick(date);
-                }}
-              />
-              {panelChild}
-            </Popover.Panel>
-          </>
-        )}
-      </Popover>
-    );
-  }
-);
-DatePicker.displayName = "DatePicker";
-
-export { DatePicker, DatePickerButton, DatePickerPanel }; 
+DatePicker.Button = DatePickerButton;
+DatePicker.Panel = DatePickerPanel;

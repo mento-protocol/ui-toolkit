@@ -1,6 +1,6 @@
-import { type HTMLAttributes } from "react";
+import { type CSSProperties, type ComponentProps } from "react";
 
-export interface BaseIconProps extends HTMLAttributes<SVGElement> {
+export interface BaseIconProps extends ComponentProps<"svg"> {
   /**
    * Width of the icon in pixels
    */
@@ -9,6 +9,26 @@ export interface BaseIconProps extends HTMLAttributes<SVGElement> {
    * Height of the icon in pixels
    */
   height?: number;
+  /**
+   * Color for the icon
+   */
+  color?: string;
+  /**
+   * Background color for the icon
+   */
+  backgroundColor?: string;
+  /**
+   * Whether to use theme colors
+   */
+  useThemeColor?: boolean;
+  /**
+   * Additional CSS classes
+   */
+  className?: string;
+  /**
+   * Additional CSS styles
+   */
+  style?: CSSProperties;
   /**
    * CSS class for the stroke color, following our color system
    * @default "stroke-foreground dark:stroke-foreground-dark"
@@ -19,9 +39,4 @@ export interface BaseIconProps extends HTMLAttributes<SVGElement> {
    * @default "fill-foreground dark:fill-foreground-dark"
    */
   fillClass?: string;
-  /**
-   * Additional CSS classes
-   */
-  className?: string;
 }
-  

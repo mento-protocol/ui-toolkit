@@ -59,4 +59,3 @@ const PendingMessage = ({ message }: { message: React.ReactNode }) => {
   );
 };
 
-TxModal.displayName = "TxModal";

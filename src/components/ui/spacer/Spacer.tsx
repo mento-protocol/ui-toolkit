@@ -14,4 +14,3 @@ export const Spacer: React.FC<SpacerProps> = ({
   return <span className={`${classes} ${className}`} />;
 };
 
-Spacer.displayName = "Spacer";

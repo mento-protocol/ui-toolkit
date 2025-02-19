@@ -53,6 +53,5 @@ const Status = React.forwardRef<HTMLDivElement, StatusProps>(
   }
 );
 
-Status.displayName = "Status";
 
 export { Status, statusVariants }; 

@@ -48,4 +48,3 @@ export const LearnMore = ({ className, style }: LearnMoreProps) => {
   );
 };
 
-LearnMore.displayName = "LearnMore";

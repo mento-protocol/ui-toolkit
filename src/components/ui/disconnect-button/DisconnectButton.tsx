@@ -9,4 +9,3 @@ export const DisconnectButton = (props: ButtonProps) => {
   return <Button {...props} onClick={() => disconnect()} />;
 };
 
-DisconnectButton.displayName = "DisconnectButton";

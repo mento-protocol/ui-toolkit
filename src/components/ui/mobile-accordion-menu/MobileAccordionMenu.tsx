@@ -80,4 +80,3 @@ export const MobileAccordionMenu = ({
   );
 };
 
-MobileAccordionMenu.displayName = "MobileAccordionMenu";

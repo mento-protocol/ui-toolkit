@@ -59,4 +59,3 @@ export const Modal = ({
   );
 };
 
-Modal.displayName = "Modal";

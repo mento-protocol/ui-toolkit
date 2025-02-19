@@ -60,7 +60,6 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     );
   }
 );
-Progress.displayName = "Progress";
 
 export interface MultiProgressValue {
   value: number;
@@ -123,6 +122,5 @@ const MultiProgress = React.forwardRef<HTMLDivElement, MultiProgressProps>(
     );
   }
 );
-MultiProgress.displayName = "MultiProgress";
 
 export { Progress, MultiProgress }; 

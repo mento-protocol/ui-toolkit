@@ -30,4 +30,3 @@ export const DisconnectIcon = ({
   );
 };
 
-DisconnectIcon.displayName = "DisconnectIcon";

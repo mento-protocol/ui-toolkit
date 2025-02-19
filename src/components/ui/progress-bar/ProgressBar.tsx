@@ -117,7 +117,6 @@ export const ProgressBar = ({
     </div>
   );
 };
-ProgressBar.displayName = "ProgressBar";
 
 export const MultiProgressBar = ({
   className,
@@ -195,4 +194,3 @@ export const MultiProgressBar = ({
   );
 }; 
 
-MultiProgressBar.displayName = "MultiProgressBar";

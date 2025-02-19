@@ -37,4 +37,3 @@ export const ChangeNetworkIcon = ({
   );
 };
 
-ChangeNetworkIcon.displayName = "ChangeNetworkIcon";

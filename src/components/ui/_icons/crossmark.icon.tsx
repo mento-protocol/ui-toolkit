@@ -30,4 +30,3 @@ export const CrossmarkIcon = ({
   );
 };
 
-CrossmarkIcon.displayName = "CrossmarkIcon";

@@ -48,7 +48,6 @@ const MaxWidthWrapper = React.forwardRef<HTMLDivElement, MaxWidthWrapperProps>(
   }
 );
 
-MaxWidthWrapper.displayName = "MaxWidthWrapper";
 
 export { MaxWidthWrapper };
 export type { MaxWidthWrapperProps }; 
