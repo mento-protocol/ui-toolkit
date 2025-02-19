@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
 import { DiscordIcon, GithubIcon, MentoLogoIcon, TwitterIcon } from "@/components/ui/_icons";
 import { ThemeSwitch } from "@/components/ui/theme-switch/ThemeSwitch";

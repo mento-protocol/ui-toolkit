@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import * as React from "react";
 import BaseComponentProps from "@/components/interfaces/base-component-props.interface";
 import { blo, Address } from "blo";
 import { VariantProps, cva } from "class-variance-authority";

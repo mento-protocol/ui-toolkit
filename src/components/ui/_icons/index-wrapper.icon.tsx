@@ -1,26 +1,21 @@
-import React from "react";
-import { forwardRef } from "react";
+import * as React from "react";
 import { cn } from "@/utils/common/cn";
 import { type BaseIconProps } from "./base-icon-interface";
 
-export const IndexWrapperIcon = forwardRef<SVGSVGElement, BaseIconProps>(
-  (
+export const IndexWrapperIcon = (
     {
       width = 30,
       height = 30,
       fillClass = "fill-primary",
       className,
-      ...props
-    },
-    ref
-  ) => {
-    return (
-      <svg
-        ref={ref}
-        className={cn(className)}
-        xmlns="http://www.w3.org/2000/svg"
-        width={width}
-        height={height}
+  ...props
+}: BaseIconProps) => {
+  return (
+    <svg
+      className={cn(className)}
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
         viewBox="0 0 30 30"
         fill="none"
         {...props}
@@ -34,8 +29,7 @@ export const IndexWrapperIcon = forwardRef<SVGSVGElement, BaseIconProps>(
           d="M24.9758 6.77692C24.9758 5.38491 23.847 4.25334 22.4544 4.25333L4.33119 4.25333V0.1126L22.8156 0.11261C26.2969 0.112617 29.1191 2.93374 29.1191 6.41377V24.9219H24.9758V6.77692Z"
         />
       </svg>
-    );
-  }
-);
+  );
+};
 
 IndexWrapperIcon.displayName = "IndexWrapperIcon";

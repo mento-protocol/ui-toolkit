@@ -1,3 +1,4 @@
+import * as React from "react";
 import BaseComponentProps from "@/components/interfaces/base-component-props.interface";
 import { cn } from "@/utils/common/cn";
 import { IndexWrapperIcon } from "@/components/ui/_icons";

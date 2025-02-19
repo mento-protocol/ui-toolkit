@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { ReactNode, useMemo, useRef } from "react";
 import { cn } from "@/utils/common/cn";
 
@@ -16,9 +17,9 @@ export const SeeAll = ({
   children,
   height,
 }: SeeAllProps) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = React.useRef<HTMLDivElement>(null);
 
-  const initialHeight = useMemo(() => {
+  const initialHeight = React.useMemo(() => {
     const sizeData = ref.current?.getBoundingClientRect();
     return sizeData?.height;
     // Less exhaustive than wiring in resize effects

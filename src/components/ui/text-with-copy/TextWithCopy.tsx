@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Copy } from "lucide-react";
 import { cn } from "@/utils/common/cn";
 import { toast } from "sonner";

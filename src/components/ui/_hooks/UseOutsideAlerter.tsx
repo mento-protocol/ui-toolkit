@@ -1,13 +1,13 @@
 "use client";
 
-import { RefObject, useEffect } from "react";
+import * as React from "react";
 
 function useOutsideAlerter(
-  ref: RefObject<any>,
+  ref: React.RefObject<any>,
   callback: (...args: any[]) => any,
   prompt?: string,
 ) {
-  useEffect(() => {
+  React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (ref.current && !ref.current.contains(event.target)) {
         if (!prompt || !window.confirm(prompt)) {

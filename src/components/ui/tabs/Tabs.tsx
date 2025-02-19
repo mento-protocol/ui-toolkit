@@ -1,5 +1,5 @@
 "use client";
-import { Children, ComponentProps, useState } from "react";
+import * as React from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/utils/common/cn";
 import BaseComponentProps from "@/components/interfaces/base-component-props.interface";
@@ -33,7 +33,7 @@ const buttonVariant = cva(
 );
 
 export interface TabListProps
-  extends ComponentProps<"div">,
+  extends React.ComponentProps<"div">,
     VariantProps<typeof variants> {
   tabs: string[];
 }
@@ -44,7 +44,7 @@ export const TabList = ({
   tabs,
   headerAlignment = "default",
 }: TabListProps) => {
-  const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedTab, setSelectedTab] = React.useState(0);
 
   return (
     <div className={cn("flex flex-col gap-6 bg-inherit", className)}>
@@ -66,7 +66,7 @@ export const TabList = ({
         ))}
       </div>
       <div className="flex max-h-[500px] flex-nowrap overflow-hidden overflow-y-auto md:max-h-full md:overflow-y-visible">
-        {Children.toArray(children).map((child, index) => (
+        {React.Children.toArray(children).map((child, index) => (
           <div
             key={index}
             className={cn(

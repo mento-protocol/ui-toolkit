@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import { cn } from "@/utils/common/cn";
-import { type BaseIconProps } from "./base-icon-interface";
+import { BaseIconProps } from "./base-icon-interface";
 
 export const AccountIcon = ({
   width = 33,

@@ -1,3 +1,4 @@
+import * as React from "react";
 import { type ReactNode } from "react";
 import { cva } from "class-variance-authority";
 import BaseComponentProps from "@/components/interfaces/base-component-props.interface";

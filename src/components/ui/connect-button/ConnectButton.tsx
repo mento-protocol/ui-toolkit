@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import {
   ConnectButton as RainbowConnectButton,
 } from "@rainbow-me/rainbowkit";

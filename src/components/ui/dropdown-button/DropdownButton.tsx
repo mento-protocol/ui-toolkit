@@ -1,5 +1,5 @@
 "use client";
-import { ComponentProps, ReactNode, useEffect, useRef, useState } from "react";
+import * as React from "react";
 import { Dropdown, DropdownElement, type ElementProps } from "./DropdownButtonAddons";
 import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/utils/common/cn";
@@ -79,11 +79,11 @@ const variants = cva(
   },
 );
 
-type DropdownButtonProps = ComponentProps<"button"> &
-  ComponentProps<"a"> &
+type DropdownButtonProps = React.ComponentProps<"button"> &
+  React.ComponentProps<"a"> &
   VariantProps<typeof variants> & {
     title?: string;
-    avatar?: ReactNode;
+    avatar?: React.ReactNode;
     buttonClassName?: string;
     align?: "left" | "right";
   };
@@ -97,18 +97,18 @@ export const DropdownButton = ({
   buttonClassName,
   avatar,
 }: DropdownButtonProps) => {
-  const [alignment, setAlignment] = useState<"left" | "right">("right");
-  const [dropdownPositionTopOffset, setDropdownPositionTopOffset] = useState(0);
-  const [dropdownOpened, setDropdownOpened] = useState(false);
+  const [alignment, setAlignment] = React.useState<"left" | "right">("right");
+  const [dropdownPositionTopOffset, setDropdownPositionTopOffset] = React.useState(0);
+  const [dropdownOpened, setDropdownOpened] = React.useState(false);
 
-  const dropdownRef = useRef(null);
-  const dropdownContentRef = useRef(null);
+  const dropdownRef = React.useRef(null);
+  const dropdownContentRef = React.useRef(null);
 
   useOutsideAlerter(dropdownRef, () => {
     setDropdownOpened(false);
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     const elementRect = (dropdownRef?.current as any).getBoundingClientRect();
     const elementWidth = (dropdownRef?.current as any).getBoundingClientRect()
       .width;
@@ -117,7 +117,7 @@ export const DropdownButton = ({
     }
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleResize = () => {
       const elementRect = (dropdownRef?.current as any).getBoundingClientRect();
       if (elementRect.top >= window.screen.height - 350) {
