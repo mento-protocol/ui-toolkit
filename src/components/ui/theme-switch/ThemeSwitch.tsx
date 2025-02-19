@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
+import * as React from "react";
 import { useTheme } from "next-themes";
-import { LightModeIcon, DarkModeIcon } from "@/components/ui/_icons";
+import { LightModeIcon, DarkModeIcon } from "../_icons";
 import { cn } from "@/utils/common/cn";
 
 export const enum Theme_Mode {
@@ -11,7 +11,7 @@ export const enum Theme_Mode {
 
 export const ThemeSwitch = () => {
   const { resolvedTheme: theme, setTheme } = useTheme();
-
+  console.log("From kit",theme);
   const onToggleSwitch = () => {
     setTheme(theme === Theme_Mode.DARK ? Theme_Mode.LIGHT : Theme_Mode.DARK);
   };

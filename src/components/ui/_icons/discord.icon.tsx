@@ -1,12 +1,11 @@
 import * as React from "react";
-import { type BaseIconProps } from "./base-icon-interface";
 
 export const DiscordIcon = ({
   width = 20,
   height = 16,
   className,
   ...restProps
-}: BaseIconProps) => (
+}: React.SVGProps<SVGSVGElement>): JSX.Element => (
   <svg
     width={width}
     height={height}

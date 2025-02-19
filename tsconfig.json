@@ -1,15 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "target": "es2020",
+    "lib": ["dom", "dom.iterable", "esnext", "es2020"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -17,6 +13,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "declaration": true,
+    "incremental": true,
+    "noUnusedLocals": true,
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
@@ -36,18 +34,13 @@
         "./src/utils/*"
       ],
     },
-    "noEmit": true,
-    "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
     ]
   },
-  "include": [
-    "src",
-    ".next/types/**/*.ts"
-  ],
+  "include": ["src", ".next/types/**/*.ts"],
   "exclude": [
     "node_modules",
     "dist"

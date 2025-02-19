@@ -6,7 +6,7 @@ export const TwitterIcon = ({
   height = 41,
   className,
   ...props
-}: BaseIconProps) => (
+}: BaseIconProps): JSX.Element => (
   <svg
     width={width}
     height={height}

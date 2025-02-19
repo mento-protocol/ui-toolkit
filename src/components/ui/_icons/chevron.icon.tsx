@@ -9,7 +9,7 @@ export const ChevronIcon = ({
   width = 5,
   height = 10,
   direction,
-}: ChevronIconProps) => {
+}: ChevronIconProps): JSX.Element => {
   let transform = "rotate(0deg)";
 
   switch (direction) {
