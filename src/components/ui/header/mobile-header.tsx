@@ -233,7 +233,9 @@ const ConnectedInfo = ({ address, mentoBalance, veMentoBalance, isProd = false }
             </div>
           </div>
           <div className="mx-[8px] my-[10px] flex h-[20.75px] w-[17.313px] items-center justify-center">
+            {/* @ts-ignore */}
             <CopyToClipboard onCopy={onCopy} text={address}>
+            {/* @ts-ignore */}
               <div className="cursor-pointer">
                 <CopyIcon height={22} width={18} />
               </div>

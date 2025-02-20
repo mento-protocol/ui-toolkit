@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { Dropdown, DropdownElement, type ElementProps } from "./DropdownButtonAddons";
+import { Dropdown, DropdownElement } from "./DropdownButtonAddons";
 import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/utils/common/cn";
 import { useOutsideAlerter } from "@/components/ui/_hooks";

@@ -8,12 +8,11 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "declaration": true,
-    "incremental": true,
     "noUnusedLocals": true,
     "outDir": "dist",
     "baseUrl": ".",
@@ -32,7 +31,7 @@
       ],
       "@/utils/*": [
         "./src/utils/*"
-      ],
+      ]
     },
     "plugins": [
       {
@@ -40,9 +39,12 @@
       }
     ]
   },
-  "include": ["src", ".next/types/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "configs/**/*.ts"],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.stories.tsx"
   ]
 }

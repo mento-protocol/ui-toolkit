@@ -1,6 +1,6 @@
-# UI Toolkit
+# Mento Protocol UI Toolkit
 
-A comprehensive UI component library for web3 applications, built with React, Radix UI, and Tailwind CSS.
+A comprehensive UI toolkit for building Mento Protocol applications.
 
 ## Overview
 
@@ -25,41 +25,144 @@ The following components are currently under development and not available in th
 pnpm add @mento-protocol/ui-toolkit
 ```
 
-## Usage
+### Required Dependencies
 
-### Components
+```bash
+# Core dependencies
+pnpm add postcss-import tailwindcss @tailwindcss/typography tailwindcss-animate
+
+# Peer dependencies (install as needed)
+pnpm add @rainbow-me/rainbowkit@^2.0.0 \
+  @tanstack/react-query@^5.0.0 \
+  framer-motion@^11.0.0 \
+  next-themes@^0.4.0 \
+  viem@^2.0.0 \
+  wagmi@^2.0.0
+```
+
+### Configuration Steps
+
+1. **Configure PostCSS** (postcss.config.js):
+```javascript
+module.exports = {
+  plugins: {
+    'postcss-import': {},
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+```
+
+2. **Configure Tailwind** (tailwind.config.ts):
+```typescript
+import type { Config } from 'tailwindcss';
+import { tailwindConfig } from "@mento-protocol/ui-toolkit";
+
+export default {
+  presets: [tailwindConfig],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@mento-protocol/ui-toolkit/dist/**/*.{js,ts,jsx,tsx}",
+  ],
+} satisfies Config;
+```
+
+3. **Import Styles** (app/globals.css or styles/globals.css):
+```css
+@import "@mento-protocol/ui-toolkit/dist/styles/index.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+4. **Configure Next.js** (next.config.mjs):
+```javascript
+/** @type {import('next').NextConfig} */
+const config = {
+  transpilePackages: ['@mento-protocol/ui-toolkit'],
+};
+
+export default config;
+```
+
+### Usage Example
 
 ```tsx
-import { Button, Input } from '@mento-protocol/ui-toolkit';
+import { Button } from '@mento-protocol/ui-toolkit';
+
+export default function MyComponent() {
+  return (
+    <Button variant="primary">
+      Click Me
+    </Button>
+  );
+}
 ```
 
-### Tailwind Configuration
+### Troubleshooting
 
-To use the Mento UI Toolkit's Tailwind configuration in your project:
+If you encounter style-related issues:
 
-```js
-// tailwind.config.js
-import { tailwindConfig } from '@mento-protocol/ui-toolkit';
+1. Verify your PostCSS configuration includes `postcss-import`
+2. Ensure the Tailwind content paths include the UI toolkit's dist directory
+3. Check that styles are imported before Tailwind directives
+4. Clear your Next.js cache if needed:
+   ```bash
+   rm -rf .next
+   rm -rf node_modules/.cache
+   ```
 
-/** @type {import('tailwindcss').Config} */
-export default {
-  // Extend the base configuration
-  presets: [tailwindConfig],
-  // Add your custom configuration
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-    // Include the UI toolkit components
-    './node_modules/@mento-protocol/ui-toolkit/dist/**/*.{js,ts,jsx,tsx}'
-  ],
-  theme: {
-    extend: {
-      // Your custom theme extensions
-    }
-  }
-};
+For more detailed debugging steps, see [CSS-IMPORT-DEBUG.md](./CSS-IMPORT-DEBUG.md).
+
+## Usage
+
+### Basic Components
+
+```tsx
+import { Button, Input, Card } from '@mento-protocol/ui-toolkit';
+
+export default function MyComponent() {
+  return (
+    <Card>
+      <Input placeholder="Enter text..." />
+      <Button>Click me</Button>
+    </Card>
+  );
+}
 ```
 
-This will give you access to all the Mento UI Toolkit's design tokens, colors, and utilities.
+### Web3 Components
+
+```tsx
+import { WalletConnect, NetworkSelector } from '@mento-protocol/ui-toolkit';
+
+export default function Web3Component() {
+  return (
+    <div>
+      <WalletConnect />
+      <NetworkSelector />
+    </div>
+  );
+}
+```
+
+### Theme Provider
+
+To enable dark mode support, wrap your application with the theme provider:
+
+```tsx
+import { ThemeProvider } from '@mento-protocol/ui-toolkit';
+
+export default function App({ children }) {
+  return (
+    <ThemeProvider defaultTheme="system" enableSystem>
+      {children}
+    </ThemeProvider>
+  );
+}
+```
 
 ## Development
 

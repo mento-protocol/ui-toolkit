@@ -7,7 +7,7 @@ function generateCustomSpacing() {
   for (let i = 1; i <= 20; i++) {
     spacing[`x${i}`] = `${5 * i}px`;
   }
-  return spacing as any;
+  return spacing;
 }
 
 export default {
@@ -106,41 +106,58 @@ export default {
         "in-out-bounce": "cubic-bezier(0.81, -0.44, 0.19, 1.44)",
       },
       colors: {
-        // Brand Colors
         primary: {
+          light: "#4D62F0",
           DEFAULT: "#4D62F0",
           dark: "#2A326A",
-          light: "#6B7EFF",
         },
         secondary: {
-          DEFAULT: "#E5E7EB",
-          dark: "#D1D5DB",
-          light: "#F3F4F6",
+          light: "#FCD7FC",
+          DEFAULT: "#FCD7FC",
+          dark: "#845F84",
         },
+        "light-red": "#FF848A",
+        "light-green": "#D2FCBF",
         success: {
-          DEFAULT: "#10B981",
-          dark: "#059669",
-          light: "#34D399",
+          light: "#d2fcbd",
+          DEFAULT: "#d2fcbd",
+          dark: "#64805d",
         },
         error: {
-          DEFAULT: "#EF4444",
-          dark: "#DC2626",
-          light: "#F87171",
+          light: "#ff848a",
+          DEFAULT: "#ff848a",
+          dark: "#893e43",
         },
         warning: {
-          DEFAULT: "#F59E0B",
-          dark: "#D97706",
-          light: "#FBBF24",
+          light: "#f9fa96",
+          DEFAULT: "#f9fa96",
+          dark: "#878751",
         },
         info: {
-          DEFAULT: "#3B82F6",
-          dark: "#2563EB",
-          light: "#60A5FA",
+          light: "#d5f0f6",
+          DEFAULT: "#d5f0f6",
+          dark: "#5c6c74",
         },
+        black: {
+          off: "#121316",
+          DEFAULT: "#02010A",
+        },
+        white: "#FFFFFF",
         gray: {
-          DEFAULT: "#9CA3AF",
-          light: "#E5E7EB",
-          dark: "#4B5563",
+          alt66: "#88888866",
+          lighter: "#CCCFDE",
+          light: "#B3B3B3",
+          DEFAULT: "#808080",
+          regular: "#808080",
+          dark: "#636366",
+        },
+        mento: {
+          blue: "#4D62F0",
+          cyan: "#A5E5F7",
+          bright: "#F9FAA2",
+          mint: "#D2FCBD",
+          blush: "#FCD7FC",
+          dark: "#02010A",
         },
         background: "var(--background)",
         foreground: "var(--foreground)",
@@ -148,4 +165,50 @@ export default {
     },
   },
   plugins: [typography, animate],
+  safelist: [
+    // General arbitrary values
+    {
+      pattern: /\[.+\]/,
+      variants: ['hover', 'focus', 'active', 'before', 'after', 'dark'],
+    },
+    // Spacing and sizing
+    {
+      pattern: /(w|h|p|m).*-\[.+\]/,
+      variants: ['hover', 'focus', 'active', 'before', 'after', 'dark'],
+    },
+    // Typography
+    {
+      pattern: /text-\[.+\]/,
+      variants: ['hover', 'focus', 'active', 'dark'],
+    },
+    // Positioning
+    {
+      pattern: /(top|left|right|bottom)-\[.+\]/,
+      variants: ['hover', 'focus', 'active', 'before', 'after', 'dark'],
+    },
+    // Transforms and transitions
+    {
+      pattern: /(transform|translate|rotate|scale)-\[.+\]/,
+      variants: ['hover', 'focus', 'active', 'before', 'after', 'dark'],
+    },
+    // Pseudo-elements
+    {
+      pattern: /before:\[.+\]/,
+      variants: ['hover', 'focus', 'active'],
+    },
+    {
+      pattern: /after:\[.+\]/,
+      variants: ['hover', 'focus', 'active'],
+    },
+    // Colors and backgrounds
+    {
+      pattern: /(bg|text|border|fill|stroke)-(primary|secondary|success|error|warning|info|gray|black|mento|light-red|light-green).*/,
+      variants: ['hover', 'focus', 'active', 'dark', 'before', 'after'],
+    },
+    // Dark mode specific
+    {
+      pattern: /dark:.*/,
+      variants: ['hover', 'focus', 'active', 'before', 'after'],
+    }
+  ],
 } satisfies Config;

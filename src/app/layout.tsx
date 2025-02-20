@@ -5,10 +5,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Inter } from "next/font/google";
 import { Footer } from "@/components/ui/footer/Footer";
 import '@rainbow-me/rainbowkit/styles.css';
-import './globals.css';
+import '../styles/globals.css';
 import { mentoRainbowKitProviderConfig, mentoWagmiConfig, rainbowKitTheme } from "@/config";
 import { WagmiProvider } from "wagmi";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { Header } from "@/components/ui";
 
 
 const inter = Inter({
@@ -39,7 +40,13 @@ export default function RootLayout({
                 theme={rainbowKitTheme.darkMode}
                 {...mentoRainbowKitProviderConfig}
               >
-                <Header />
+                <Header mentoBalance={{
+                  formatted: "0",
+                  symbol: "MENTO",
+                }} veMentoBalance={{
+                  formatted: "0",
+                  symbol: "veMENTO",
+                }} />
                 <main className="flex-1">
                   {children}
                 </main>

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { cn } from "@/utils/common/cn";
 import { type BaseIconProps } from "./base-icon-interface";
 
 export const DarkModeIcon = ({

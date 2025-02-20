@@ -6,8 +6,8 @@ import {
   Theme,
 } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { WagmiProvider, http } from "wagmi";
-import { Chain, mainnet, sepolia } from "wagmi/chains";
+import { WagmiProvider } from "wagmi";
+import { Chain } from "wagmi/chains";
 import "@rainbow-me/rainbowkit/styles.css";
 import { getRainbowKitConfig } from "./rainbow-kit.config";
 import { Alfajores, Celo } from "../../chains";

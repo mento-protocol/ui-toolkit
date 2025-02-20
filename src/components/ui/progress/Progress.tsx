@@ -75,7 +75,6 @@ export interface MultiProgressProps
 
 const MultiProgress = React.forwardRef<HTMLDivElement, MultiProgressProps>(
   ({ className, values, max = 100, size, ...props }, ref) => {
-    const total = values.reduce((acc, curr) => acc + curr.value, 0);
     const percentages = values.map((v) => Math.min((v.value / max) * 100, 100));
 
     return (

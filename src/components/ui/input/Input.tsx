@@ -6,7 +6,7 @@ import BaseInputProps from "@/components/interfaces/base-input-props.interface";
 import { cn } from "@/utils/common/cn";
 
 interface InputProps extends BaseComponentProps, BaseInputProps {
-  type: "text" | "email" | "password" | "number" | "tel" | "url";
+  type: "text" | "email" | "password" | "number" | "tel" | "url" | "radio" | "checkbox";
   addon?: ReactNode;
   compact?: boolean;
 }

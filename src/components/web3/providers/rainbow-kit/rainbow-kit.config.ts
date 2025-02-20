@@ -1,4 +1,4 @@
-import { Chain, connectorsForWallets } from "@rainbow-me/rainbowkit";
+import { Chain, connectorsForWallets, RainbowKitWalletConnectParameters } from "@rainbow-me/rainbowkit";
 import {
   metaMaskWallet,
   omniWallet,
@@ -7,10 +7,9 @@ import {
 } from "@rainbow-me/rainbowkit/wallets";
 import { createConfig, http } from "wagmi";
 import { valora } from "./valora.config";
-import { ConnectorsForWalletsParameters } from "@rainbow-me/rainbowkit/dist/wallets/connectorsForWallets";
-import { Alfajores, Celo, MentoChain } from "../../chains";
+import { Alfajores, Celo } from "../../chains";
 
-interface RainbowKitConfigOptions extends ConnectorsForWalletsParameters {
+interface RainbowKitConfigOptions extends RainbowKitWalletConnectParameters {
   appName: string;
   projectId: string;
   chains?: Chain[];
