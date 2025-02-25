@@ -6,4 +6,4 @@ export {
 } from "./utils";
 // export * from "./themes";
 export * from "./config";
-export { default as tailwindConfig } from "../configs/tailwind.config";
+export { default as tailwindPreset } from "../configs/tailwind.config";

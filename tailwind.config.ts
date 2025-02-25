@@ -1,7 +1,8 @@
 import type { Config } from "tailwindcss";
+import tailwindConfig from "./configs/tailwind.config";
 
 export default {
-  presets: [require("./configs/tailwind.config")],
+  presets: [tailwindConfig],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
