@@ -46,7 +46,7 @@ pnpm add @rainbow-me/rainbowkit@^2.0.0 \
 ```javascript
 module.exports = {
   plugins: {
-    'postcss-import': {},
+    'postcss-import': {},  // Must be first
     tailwindcss: {},
     autoprefixer: {},
   },
@@ -65,11 +65,18 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx}",
     "./node_modules/@mento-protocol/ui-toolkit/dist/**/*.{js,ts,jsx,tsx}",
   ],
+  // Only extend theme if you need additional styles
+  theme: {
+    extend: {
+      // Your custom extensions
+    }
+  }
 } satisfies Config;
 ```
 
 3. **Import Styles** (app/globals.css or styles/globals.css):
 ```css
+/* UI Toolkit styles must come before Tailwind directives */
 @import "@mento-protocol/ui-toolkit/dist/styles/index.css";
 
 @tailwind base;
@@ -87,34 +94,128 @@ const config = {
 export default config;
 ```
 
-### Usage Example
+5. **Configure Fonts** (app/layout.tsx):
+```typescript
+import { Inter } from 'next/font/google';
 
-```tsx
-import { Button } from '@mento-protocol/ui-toolkit';
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
-export default function MyComponent() {
+export default function RootLayout({ children }) {
   return (
-    <Button variant="primary">
-      Click Me
-    </Button>
+    <html className={`${inter.variable} w-full overscroll-none`}>
+      {children}
+    </html>
   );
 }
 ```
 
-### Troubleshooting
+## Troubleshooting Guide
 
-If you encounter style-related issues:
+### Common Issues
 
-1. Verify your PostCSS configuration includes `postcss-import`
-2. Ensure the Tailwind content paths include the UI toolkit's dist directory
-3. Check that styles are imported before Tailwind directives
-4. Clear your Next.js cache if needed:
+1. **Styles Not Applying**
+   - Clear Next.js and module caches:
+     ```bash
+     rm -rf .next
+     rm -rf node_modules/.cache
+     ```
+   - Verify style import order in globals.css
+   - Check Tailwind content paths include toolkit components
+
+2. **Font Issues**
+   - Ensure font variables are properly set:
+     ```typescript
+     // Must match these names
+     variable: "--font-inter"  // For Inter font
+     variable: "--font-fg"     // For fallback font
+     ```
+   - Verify font classes are applied to html/body
+   - Check font preload settings in Next.js config
+
+3. **Arbitrary Values Missing**
+   - Verify toolkit's Tailwind preset is first in presets array
+   - Check for style conflicts in theme extensions
+   - Enable debug output to trace class generation:
+     ```bash
+     DEBUG=tailwindcss:* pnpm dev
+     ```
+
+4. **Dark Mode Issues**
+   - Ensure ThemeProvider is properly configured
+   - Check dark mode classes in Tailwind config
+   - Verify dark variants in component styles
+
+### Development Workflow
+
+1. **Local Development**
    ```bash
-   rm -rf .next
-   rm -rf node_modules/.cache
+   # In ui-toolkit directory
+   pnpm link --global
+   pnpm build --watch
+
+   # In consuming app
+   pnpm link --global @mento-protocol/ui-toolkit
    ```
 
-For more detailed debugging steps, see [CSS-IMPORT-DEBUG.md](./CSS-IMPORT-DEBUG.md).
+2. **Style Updates**
+   - Rebuild toolkit after style changes
+   - Clear consuming app caches
+   - Verify style inheritance in browser dev tools
+
+3. **Debug Commands**
+   ```bash
+   # Watch Tailwind processing
+   DEBUG=tailwindcss:* pnpm dev
+
+   # Check PostCSS processing
+   DEBUG=postcss:* pnpm dev
+
+   # Verify component styles
+   DEBUG=*:(tailwind|postcss)* pnpm dev
+   ```
+
+### Best Practices
+
+1. **Theme Extension**
+   - Extend rather than override theme values
+   - Use semantic color names for consistency
+   - Keep custom styles separate from toolkit styles
+
+2. **Style Verification**
+   ```bash
+   # 1. Clear caches
+   rm -rf .next node_modules/.cache
+
+   # 2. Rebuild with debug output
+   DEBUG=tailwindcss:* pnpm dev
+
+   # 3. Verify in browser
+   - Check font loading
+   - Verify arbitrary values
+   - Confirm component styling
+   ```
+
+3. **Cache Management**
+   - Clear caches when:
+     - Updating toolkit version
+     - Making theme changes
+     - Experiencing style inconsistencies
+   - Use watch mode during development
+
+4. **Integration Testing**
+   - Test components in light/dark modes
+   - Verify responsive behaviors
+   - Check font loading performance
+   - Validate arbitrary value rendering
+
+For more detailed debugging steps:
+- [CSS Import Debug Guide](./CSS-IMPORT-DEBUG.md)
+- [Component Styles Debug Guide](./COMPONENT-STYLES-DEBUG.md)
+- [Arbitrary Values Guide](./ARBITRARY-VALUES-PR.md)
 
 ## Usage
 

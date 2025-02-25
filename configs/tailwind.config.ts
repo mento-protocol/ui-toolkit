@@ -21,6 +21,14 @@ export default {
         loaderPulseBorder: "loaderPulseBorder 2s linear infinite",
         altSpin: "altSpin 1s linear infinite",
       },
+      fontSize: {
+        'xs': '14px',
+        'sm': '15px',
+        'base': '16px',
+        'lg': '18px',
+        'xl': '22px',
+        'display': '44px',
+      },
       keyframes: {
         "spin-slow": {
           // TODO: Cant find usage of this
@@ -59,10 +67,21 @@ export default {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      fontFamily: { fg: ["var(--font-fg)"], inter: ["var(--font-inter)"] },
       spacing: {
         ...generateCustomSpacing(),
-        initial: "initial",
+        'status-sm': '18px',
+        'status-md': '22px',
+        'status-lg': '26px',
+        'input-x': '32px',
+        'input-y': '18px',
+        'logo-desktop': '108px',
+        'logo-mobile': '90px',
+        'container-max': '1120px',
+        'content-max': '500px',
+      },
+      borderRadius: {
+        'pill': '50%',
+        'input': '4px',
       },
       transitionTimingFunction: {
         "in-sine": "cubic-bezier(0.12, 0, 0.39, 0)",
@@ -161,6 +180,18 @@ export default {
         },
         background: "var(--background)",
         foreground: "var(--foreground)",
+        surface: {
+          dark: '#121316',
+        },
+        text: {
+          muted: '#636768',
+        },
+      },
+      transitionProperty: {
+        'loader': 'opacity 0.3s, transform 0.3s 0.1s ease-in, z-index 0.1s 1s',
+      },
+      boxShadow: {
+        'focus': '0 0 0 2px',
       },
     },
   },

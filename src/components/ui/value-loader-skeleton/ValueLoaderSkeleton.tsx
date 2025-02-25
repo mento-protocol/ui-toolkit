@@ -2,22 +2,29 @@
 
 import * as React from "react";
 import { cn } from "@/utils/common/cn";
+import { cva, type VariantProps } from "class-variance-authority";
+
+const skeletonVariants = cva(
+  cn(
+    "text-xl",
+    "animate-pulse rounded-input bg-gray-300",
+    "transition-colors duration-200"
+  )
+);
+
+interface ValueLoaderSkeletonProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof skeletonVariants> {}
 
 const ValueLoaderSkeleton = ({
-  children,
   className,
-}: React.HTMLProps<HTMLDivElement>) => {
+  ...props
+}: ValueLoaderSkeletonProps) => {
   return (
-    <div
-      className={cn(
-        "text-[22px]",
-        className,
-        "animate-pulse rounded-[4px] bg-gray-300",
-      )}
-    >
-      <span className="opacity-0">{children}</span>
+    <div className={cn(skeletonVariants({ className }))} {...props}>
+      &nbsp;
     </div>
   );
 };
 
-export default ValueLoaderSkeleton;
+export { ValueLoaderSkeleton, skeletonVariants };

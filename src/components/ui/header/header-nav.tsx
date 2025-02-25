@@ -32,7 +32,7 @@ const headerMenuItems: {
 
 const HeaderNav = () => {
   return (
-    <nav className="flex gap-9 font-inter text-[15px] dark:text-white">
+    <nav className="flex gap-9 font-inter text-sm dark:text-white">
       {headerMenuItems.map(({ name, items, href }) => {
         if (!items && href) {
           return (

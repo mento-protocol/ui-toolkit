@@ -38,7 +38,6 @@ export {
 export * from "./scroll-area/ScrollArea";
 export * from "./see-all/SeeAll";
 export * from "./sheet/Sheet";
-export * from "./skeleton/Skeleton";
 export * from "./slider/Slider";
 export * from "./spacer/Spacer";
 export * from "./status/Status";

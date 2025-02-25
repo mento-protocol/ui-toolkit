@@ -2,12 +2,20 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/common/cn";
 
+const baseStyles = cn(
+  "flex h-status-md w-min items-center justify-center whitespace-nowrap rounded-md border px-6 py-2",
+  "text-center font-medium uppercase text-base leading-none",
+  "transition-colors duration-200"
+);
+
+const sizes = {
+  sm: "h-status-sm px-4 py-1 text-xs leading-none",
+  md: "h-status-md px-6 py-2 text-base leading-none",
+  lg: "h-status-lg px-8 py-2 text-lg leading-none",
+};
+
 const statusVariants = cva(
-  cn(
-    "flex h-[22px] w-min items-center justify-center whitespace-nowrap rounded-md border px-6 py-[6.5px]",
-    "text-center font-medium uppercase text-[16px]/[1]",
-    "transition-colors duration-200"
-  ),
+  baseStyles,
   {
     variants: {
       theme: {
@@ -21,9 +29,9 @@ const statusVariants = cva(
         outline: "border-black bg-transparent text-black dark:border-white dark:text-white",
       },
       size: {
-        sm: "h-[18px] px-4 py-[4px] text-[14px]/[1]",
-        md: "h-[22px] px-6 py-[6.5px] text-[16px]/[1]",
-        lg: "h-[26px] px-8 py-[8px] text-[18px]/[1]",
+        sm: sizes.sm,
+        md: sizes.md,
+        lg: sizes.lg,
       },
     },
     defaultVariants: {
@@ -39,19 +47,15 @@ export interface StatusProps
   text: string;
 }
 
-const Status = React.forwardRef<HTMLDivElement, StatusProps>(
-  ({ className, text, theme, size, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(statusVariants({ theme, size }), className)}
-        {...props}
-      >
-        <span className="relative">{text}</span>
-      </div>
-    );
-  }
-);
-
+const Status = ({ className, text, theme, size, ...props }: StatusProps) => {
+  return (
+    <div
+      className={cn(statusVariants({ theme, size }), className)}
+      {...props}
+    >
+      <span className="relative">{text}</span>
+    </div>
+  );
+};
 
 export { Status, statusVariants }; 

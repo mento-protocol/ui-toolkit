@@ -7,18 +7,16 @@ import { Button } from "@/components/ui/button/Button";
 import { ChevronIcon, DiscordIcon, LearnMoreIcon } from "@/components/ui/_icons";
 import { links } from "@/config/links";
 
-interface LearnMoreProps extends BaseComponentProps {}
-
-export const LearnMore = ({ className, style }: LearnMoreProps) => {
+export const LearnMore = ({ className, style }: BaseComponentProps) => {
   const pathname = usePathname();
 
   return (
     <div className={cn("mb-auto mt-x4", className)} style={style}>
-      <div className="mx-auto w-full max-w-[1120px]">
+      <div className="mx-auto w-full max-w-container-max">
         {pathname === "/" && (
-          <div className="flex flex-col items-center justify-between gap-x3 bg-[#121316] px-x5 py-0 lg:flex-row lg:pl-x13 lg:pr-x11">
-            <div className="max-w-[500px] text-white">
-              <h2 className="text-[44px] mb-x5 text-center font-semibold lg:text-left">
+          <div className="flex flex-col items-center justify-between gap-x3 bg-surface-dark px-x5 py-0 lg:flex-row lg:pl-x13 lg:pr-x11">
+            <div className="max-w-content-max text-white">
+              <h2 className="text-display mb-x5 text-center font-semibold lg:text-left">
                 Learn more
               </h2>
               <p className="text-x3 leading-x5 text-center lg:text-left">

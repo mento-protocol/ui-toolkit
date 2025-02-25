@@ -43,7 +43,7 @@ export const MobileHeader = ({
   return (
     <header className="w-full px-4 lg:hidden">
       <div className="flex items-center justify-between border-b border-black p-4 dark:border-[#343437]">
-        <MentoLogoIcon className="h-5 w-[90px]" />
+        <MentoLogoIcon className="h-5 w-logo-mobile" />
         <AnimatedHamburgerButton
           className="pr-4"
           isOpen={isOpen}
@@ -93,7 +93,7 @@ const DropDownMenuOverlay = ({
         <MobileAccordionMenu />
 
         <div className="flex w-full flex-col items-center justify-center">
-          <div className="flex w-full flex-col items-center justify-center py-[32px]">
+          <div className="flex w-full flex-col items-center justify-center py-8">
             {address ? (
               <DisconnectButton
                 theme="white"
@@ -217,10 +217,10 @@ const ConnectedInfo = ({ address, mentoBalance, veMentoBalance, isProd = false }
   };
 
   return (
-    <div className="flex pb-[32px] pt-[14px]">
+    <div className="flex pb-8 pt-3.5">
       <div className="mx-auto">
         <div className="flex items-center justify-center pb-[16px]">
-          <div className="mx-[8px] my-[10px] flex h-[20px] w-[20px] items-center justify-center">
+          <div className="mx-2 my-2.5 flex h-5 w-5 items-center justify-center">
             <Avatar
               size="small"
               className="flex h-full flex-row rounded-full"
@@ -233,9 +233,9 @@ const ConnectedInfo = ({ address, mentoBalance, veMentoBalance, isProd = false }
             </div>
           </div>
           <div className="mx-[8px] my-[10px] flex h-[20.75px] w-[17.313px] items-center justify-center">
-            {/* @ts-ignore */}
+            {/* @ts-expect-error - react-copy-to-clipboard needs React 18 type updates */}
             <CopyToClipboard onCopy={onCopy} text={address}>
-            {/* @ts-ignore */}
+              {/* @ts-expect-error - nested element type mismatch */}
               <div className="cursor-pointer">
                 <CopyIcon height={22} width={18} />
               </div>
