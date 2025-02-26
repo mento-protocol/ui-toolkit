@@ -13,6 +13,11 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     ignores: [".reference/**/*", "dist/**/*", "node_modules/**/*", "**/*.test.ts", "**/*.test.tsx", "**/*.stories.tsx", "lib/**/*", ".next/**/*"]
+  },
+  {
+    rules: {
+      "@typescript-eslint/prefer-ts-expect-error": "off"
+    }
   }
 ];
 
