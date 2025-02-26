@@ -43,10 +43,6 @@
   }
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 /* Remove all Tailwind styles from the editor */
 .prose-editor.prose {
   all: revert;

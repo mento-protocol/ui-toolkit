@@ -34,8 +34,10 @@ pnpm add postcss-import tailwindcss @tailwindcss/typography tailwindcss-animate
 # Peer dependencies (install as needed)
 pnpm add @rainbow-me/rainbowkit@^2.0.0 \
   @tanstack/react-query@^5.0.0 \
+  date-fns@^2.30.0 \
   framer-motion@^11.0.0 \
   next-themes@^0.4.0 \
+  react-day-picker@^8.9.1 \
   viem@^2.0.0 \
   wagmi@^2.0.0
 ```
@@ -284,6 +286,36 @@ pnpm dev
 ```bash
 pnpm build
 ```
+
+## Releasing & Publishing
+
+This project uses [Changesets](https://github.com/changesets/changesets) for version management and has an automated GitHub Action for publishing to NPM.
+
+### Creating a Release
+
+1. Create changesets for your modifications:
+   ```bash
+   pnpm changeset
+   ```
+   Follow the prompts to select the type of version change and write a description.
+
+2. Commit the generated changeset file with your changes:
+   ```bash
+   git add .changeset/
+   git commit -m "chore: add changeset for new feature"
+   ```
+
+3. Push your changes and create a pull request to the main branch.
+
+### Automated Publishing
+
+When changes are merged to the main branch, a GitHub Action automatically:
+
+1. Builds and verifies the package
+2. Processes any changesets to update versions
+3. Publishes to NPM if there are version changes
+
+For manual publishing or troubleshooting, see [.github/README.md](./.github/README.md).
 
 ## Project Structure
 
