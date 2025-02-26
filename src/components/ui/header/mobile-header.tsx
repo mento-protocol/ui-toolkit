@@ -233,9 +233,9 @@ const ConnectedInfo = ({ address, mentoBalance, veMentoBalance, isProd = false }
             </div>
           </div>
           <div className="mx-[8px] my-[10px] flex h-[20.75px] w-[17.313px] items-center justify-center">
-            {/* @ts-expect-error - react-copy-to-clipboard needs React 18 type updates */}
+            {/* @ts-expect-error: TS2786 - 'CopyToClipboard' cannot be used as a JSX component */}
             <CopyToClipboard onCopy={onCopy} text={address}>
-              {/* @ts-expect-error - nested element type mismatch */}
+              {/* @ts-expect-error: TS2322 - Type 'Element' is not assignable to type 'ReactNode' */}
               <div className="cursor-pointer">
                 <CopyIcon height={22} width={18} />
               </div>
