@@ -5,7 +5,8 @@ import { resolve } from 'path'
 export default defineConfig({
   entry: {
     'index': 'src/index.ts',
-    'configs/index': 'configs/index.ts'
+    'configs/index': 'configs/index.ts',
+    'configs/eslint.config': 'configs/eslint.config.ts'
   },
   format: ['esm', 'cjs'],
   dts: true,
@@ -23,6 +24,9 @@ export default defineConfig({
     'framer-motion',
     'class-variance-authority',
     '@radix-ui/*',
+    'eslint',
+    '@eslint/eslintrc',
+    '@eslint/js',
   ],
   treeshake: true,
   outDir: 'dist',

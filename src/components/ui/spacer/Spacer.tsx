@@ -9,7 +9,7 @@ export const Spacer: React.FC<SpacerProps> = ({
   className,
 }) => {
   // Define base classes
-  let classes = axis === "horizontal" ? "w-1" : "h-1";
+  const classes = axis === "horizontal" ? "w-1" : "h-1";
 
   return <span className={`${classes} ${className}`} />;
 };

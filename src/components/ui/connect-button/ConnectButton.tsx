@@ -29,7 +29,7 @@ interface ConnectedDropdownProps extends BaseComponentProps {
     address: string;
     displayBalance?: string;
   };
-  chain?: any;
+  chain?: unknown;
   mentoBalance: TokenBalance;
   veMentoBalance: TokenBalance;
   onAccountClick?: () => void;

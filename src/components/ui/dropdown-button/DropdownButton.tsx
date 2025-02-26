@@ -109,8 +109,8 @@ export const DropdownButton = ({
   });
 
   React.useEffect(() => {
-    const elementRect = (dropdownRef?.current as any).getBoundingClientRect();
-    const elementWidth = (dropdownRef?.current as any).getBoundingClientRect()
+    const elementRect = (dropdownRef?.current as unknown as HTMLElement).getBoundingClientRect();
+    const elementWidth = (dropdownRef?.current as unknown as HTMLElement).getBoundingClientRect()
       .width;
     if (elementRect.left - elementWidth < 0) {
       setAlignment("left");
@@ -119,10 +119,10 @@ export const DropdownButton = ({
 
   React.useEffect(() => {
     const handleResize = () => {
-      const elementRect = (dropdownRef?.current as any).getBoundingClientRect();
+      const elementRect = (dropdownRef?.current as unknown as HTMLElement).getBoundingClientRect();
       if (elementRect.top >= window.screen.height - 350) {
         const contentRect = (
-          dropdownContentRef?.current as any
+          dropdownContentRef?.current as unknown as HTMLElement
         ).getBoundingClientRect();
         setDropdownPositionTopOffset(contentRect.height + 10);
       } else {

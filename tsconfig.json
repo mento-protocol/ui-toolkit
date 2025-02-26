@@ -39,7 +39,7 @@
       }
     ]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "configs/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "configs/**/*.ts", "configs/eslint.config.js"],
   "exclude": [
     "node_modules",
     "dist",

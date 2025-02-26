@@ -1,9 +1,11 @@
 # Set up Core and Minor Utilities Package
 
 ## Description
+
 Create a standardized utilities package that includes both core development utilities (prettier, eslint, cva, clsx) and minor utility functions (address shortening, BigInt parsing) that will be shared across all applications.
 
 ## Technical Requirements
+
 - Set up core development utilities:
   - ESLint configuration with TypeScript support
   - Prettier configuration for consistent formatting
@@ -17,7 +19,9 @@ Create a standardized utilities package that includes both core development util
 - Set up documentation system
 
 ## Tasks
+
 - [ ] Core Development Utilities
+
   - [ ] Create base ESLint configuration
     - [ ] TypeScript rules
     - [ ] React/Next.js specific rules
@@ -32,6 +36,7 @@ Create a standardized utilities package that includes both core development util
     - [ ] Create type-safe class merging utilities
 
 - [ ] Minor Utilities
+
   - [ ] Create Web3 utility functions
     - [ ] Address formatting/shortening
     - [ ] BigInt parsing and formatting
@@ -46,6 +51,7 @@ Create a standardized utilities package that includes both core development util
   - [ ] Create example implementations
 
 ## Acceptance Criteria
+
 - All core development utilities are properly configured and documented
 - Minor utilities are implemented with full test coverage
 - Documentation includes usage examples for all utilities
@@ -55,15 +61,18 @@ Create a standardized utilities package that includes both core development util
 - Utilities work consistently across all target applications
 
 ## Dependencies
+
 - NextJS UI Component repo setup must be completed first
 - Access to existing utility implementations from current repos
 
 ## Additional Notes
+
 - Consider creating a utility generator for common patterns
 - Document best practices for creating new utilities
 - Include performance considerations
 - Create migration guide for existing implementations
 
 ## Related Documents
+
 - Reference to project structure document
 - Link to existing utility implementations

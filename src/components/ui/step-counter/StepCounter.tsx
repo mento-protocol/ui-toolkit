@@ -3,9 +3,8 @@ import BaseComponentProps from "@/components/interfaces/base-component-props.int
 import { cn } from "@/utils/common/cn";
 import { IndexWrapperIcon } from "@/components/ui/_icons";
 
-interface StepCounterProps extends BaseComponentProps {}
 
-export const StepCounter = ({ children, className }: StepCounterProps) => {
+export const StepCounter = ({ children, className }: BaseComponentProps) => {
   return (
     <div
       className={cn(

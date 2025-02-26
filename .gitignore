@@ -44,6 +44,6 @@ next-env.d.ts
 # trunk
 .trunk/
 
-.cursor/
+.cursor*
 
 lib/minipay-dapp

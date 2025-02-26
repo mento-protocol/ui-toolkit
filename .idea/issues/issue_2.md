@@ -1,9 +1,11 @@
 # Set up Web3 Configuration Components and Hooks
 
 ## Description
+
 Create standardized Web3 configuration components and hooks that will be shared across all applications. This includes setting up wagmi, Rainbow Kit, and common contract interaction patterns.
 
 ## Technical Requirements
+
 - Set up wagmi configuration with:
   - Supported chains
   - RPC configurations
@@ -19,6 +21,7 @@ Create standardized Web3 configuration components and hooks that will be shared 
 - Set up ABI management system
 
 ## Tasks
+
 - [ ] Create base wagmi configuration
   - [ ] Define supported networks
   - [ ] Set up RPC endpoints configuration
@@ -38,6 +41,7 @@ Create standardized Web3 configuration components and hooks that will be shared 
   - [ ] Document ABI usage patterns
 
 ## Acceptance Criteria
+
 - All Web3 configurations are centralized and easily importable
 - Rainbow Kit is properly themed and matches our brand guidelines
 - Contract interaction hooks are type-safe and well-documented
@@ -47,16 +51,19 @@ Create standardized Web3 configuration components and hooks that will be shared 
 - Documentation includes usage examples
 
 ## Dependencies
+
 - NextJS UI Component repo setup must be completed first
 - Access to current Web3 configurations from existing repos
 - List of supported networks and RPC endpoints
 
 ## Additional Notes
+
 - Consider creating a configuration generator for different environments
 - Document best practices for contract interaction patterns
 - Include error handling patterns
 - Consider gas optimization strategies in hook implementations
 
 ## Related Documents
+
 - Reference to project structure document
 - Link to existing Web3 implementations

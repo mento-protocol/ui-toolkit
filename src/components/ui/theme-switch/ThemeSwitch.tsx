@@ -11,7 +11,6 @@ export const enum Theme_Mode {
 
 export const ThemeSwitch = () => {
   const { resolvedTheme: theme, setTheme } = useTheme();
-  console.log("From kit",theme);
   const onToggleSwitch = () => {
     setTheme(theme === Theme_Mode.DARK ? Theme_Mode.LIGHT : Theme_Mode.DARK);
   };

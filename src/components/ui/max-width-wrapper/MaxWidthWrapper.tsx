@@ -36,18 +36,20 @@ interface MaxWidthWrapperProps
   as?: React.ElementType;
 }
 
-const MaxWidthWrapper = React.forwardRef<HTMLDivElement, MaxWidthWrapperProps>(
-  ({ className, maxWidth, gutter, as: Component = "div", ...props }, ref) => {
-    return (
-      <Component
-        ref={ref}
-        className={cn(maxWidthWrapperVariants({ maxWidth, gutter }), className)}
-        {...props}
-      />
-    );
-  }
-);
-
+const MaxWidthWrapper = ({ 
+  className, 
+  maxWidth, 
+  gutter, 
+  as: Component = "div", 
+  ...props 
+}: MaxWidthWrapperProps) => {
+  return (
+    <Component
+      className={cn(maxWidthWrapperVariants({ maxWidth, gutter }), className)}
+      {...props}
+    />
+  );
+};
 
 export { MaxWidthWrapper };
 export type { MaxWidthWrapperProps }; 

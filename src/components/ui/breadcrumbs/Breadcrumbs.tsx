@@ -1,36 +1,30 @@
 "use client";
-
-import * as React from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
-import { cn } from "@/utils/common/cn";
+import { WalletHelper } from "../_helpers";
 
-interface CrumbProps {
+type CrumbProps = {
   path: string;
   index: number;
   last: boolean;
-  routingMap: Map<string, string>;
-}
+  crumbName: string;
+};
 
-const Crumb = ({ path, index, last, routingMap }: CrumbProps) => {
-  const crumbName = routingMap.get(path);
-  const params = useParams();
-  const isIdCrumb = params.id && path === params.id;
+const Crumb = ({ path, index, last, crumbName }: CrumbProps) => {
+  const isProposalCrumb = crumbName === "Proposal";
+  const proposalId = (useParams().id || "") as string;
 
   return (
-    <li className="flex items-center gap-2">
-      {index > 0 && crumbName && (
-        <span className="text-muted-foreground">&gt;</span>
-      )}
+    <li className="flex gap-2">
+      {index > 0 && crumbName && <span>{">"}</span>}
       {last ? (
-        <span className="text-foreground">
-          {isIdCrumb ? params.id : crumbName}
+        <span>
+          {crumbName}
+          {isProposalCrumb && ` ${WalletHelper.getShortAddress(proposalId)}`}
         </span>
       ) : (
-        <Link
-          href={path || "/"}
-          className="text-primary hover:text-primary/80 transition-colors"
-        >
+        <Link href={path || "/"} className="text-primary">
           {index === 0 ? "Home" : crumbName}
         </Link>
       )}
@@ -38,46 +32,33 @@ const Crumb = ({ path, index, last, routingMap }: CrumbProps) => {
   );
 };
 
-export interface BreadcrumbsProps extends React.HTMLAttributes<HTMLElement> {
-  routingMap?: Map<string, string>;
-}
+export const Breadcrumbs = ({ routingMap }: { routingMap: Map<string, string> }) => {
+  const path = usePathname();
+  const homePage = path === "/";
+  const paths = path.split("/");
+  const crumbsPath = useMemo(
+    () => paths.filter((path) => routingMap.has(path)),
+    [paths, routingMap],
+  );
 
-const Breadcrumbs = React.forwardRef<HTMLElement, BreadcrumbsProps>(
-  ({ className, routingMap = new Map(), ...props }, ref) => {
-    const path = usePathname();
-    const homePage = path === "/";
-    const paths = path.split("/").filter(Boolean);
-    const crumbsPath = React.useMemo(
-      () => paths.filter((path) => routingMap.has(path) || useParams().id === path),
-      [paths, routingMap]
-    );
-
-    if (homePage) return null;
-
-    return (
-      <nav
-        ref={ref}
-        className={cn(
-          "mt-10 w-full font-inter text-[18px]/[20px] font-medium",
-          className
-        )}
-        aria-label="Breadcrumb"
-        {...props}
-      >
-        <ol className="flex items-center gap-2">
-          {crumbsPath.map((path, index) => (
-            <Crumb
-              key={path}
-              path={path}
-              index={index}
-              last={index === crumbsPath.length - 1}
-              routingMap={routingMap}
-            />
-          ))}
-        </ol>
-      </nav>
-    );
-  }
-);
-
-export { Breadcrumbs }; 
+  return !homePage ? (
+    <nav
+      className="mt-10 w-full font-inter text-[18px]/[20px] font-medium"
+      aria-label="Breadcrumb"
+    >
+      <ol className="flex gap-2">
+        {crumbsPath.map((path, index) => (
+          <Crumb
+            key={index}
+            path={path}
+            index={index}
+            last={index === crumbsPath.length - 1}
+            crumbName={routingMap.get(path) || ""}
+          />
+        ))}
+      </ol>
+    </nav>
+  ) : (
+    <></>
+  );
+};

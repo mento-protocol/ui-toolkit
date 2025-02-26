@@ -13,7 +13,7 @@ interface RainbowKitConfigOptions extends RainbowKitWalletConnectParameters {
   appName: string;
   projectId: string;
   chains?: Chain[];
-  valora?: any; // Type from valora config
+  valora?: unknown; // Type from valora config
 }
 
 export function getRainbowKitConfig({

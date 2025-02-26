@@ -30,6 +30,7 @@ export const TextWithCopy = ({
       await navigator.clipboard.writeText(text);
       toast.success(copyMessage);
     } catch (err) {
+      console.error(err);
       toast.error("Failed to copy text");
     }
   };

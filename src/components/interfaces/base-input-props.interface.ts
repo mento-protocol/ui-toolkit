@@ -1,16 +1,18 @@
+import { ChangeEvent, FocusEvent, LegacyRef } from "react";
+
 export default interface BaseInputProps {
   id: string;
   form: FormProps;
   label?: string;
   placeholder?: string;
   error?: string;
-  value?: any;
+  value?: string | number | readonly string[] | undefined;
   disabled?: boolean;
 }
 
 interface FormProps {
-  onChange: (event: any) => void;
-  onBlur: (event: any) => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onBlur: (event: FocusEvent<HTMLInputElement, Element>) => void;
   name: string;
-  ref: any;
+  ref: LegacyRef<HTMLInputElement> | undefined;
 }

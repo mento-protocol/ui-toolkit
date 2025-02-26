@@ -1,9 +1,11 @@
 # Set up NextJS UI Component Development Environment with Trunk
 
 ## Description
+
 Create initial setup for a NextJS-based UI component development environment that will serve as both a component playground and living style $$guide for our shared UI components, using Trunk.io for code quality management.
 
 ## Technical Requirements
+
 - Set up a new NextJS project using the latest stable version
 - Configure TypeScript
 - Set up core styling dependencies:
@@ -24,6 +26,7 @@ Create initial setup for a NextJS-based UI component development environment tha
   - Styleguide example folder
 
 ## Tasks
+
 - [ ] Initialize new NextJS project with TypeScript
 - [ ] Set up TailwindCSS with basic configuration
 - [ ] Set up Trunk.io:
@@ -43,8 +46,8 @@ Create initial setup for a NextJS-based UI component development environment tha
 - [ ] Add README with setup instructions
 - [ ] Set up CI/CD pipeline for builds and tests
 
-
 ## Acceptance Criteria
+
 - Project successfully builds and runs locally
 - Basic example page renders correctly
 - All core dependencies are properly configured
@@ -57,6 +60,7 @@ Create initial setup for a NextJS-based UI component development environment tha
 - VS Code integration works with recommended extensions
 
 ## Additional Notes
+
 - This will serve as the foundation for our shared UI component library
 - Should follow the structure outlined in the project overview document
 - Trunk.io configuration based on example from oracle-relayer project

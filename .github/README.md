@@ -58,7 +58,7 @@ The publishing process uses [Changesets](https://github.com/changesets/changeset
 
 1. Make your code changes
 2. Run `pnpm changeset` to create a new changeset
-3. Select the packages to include (for monorepos) 
+3. Select the packages to include (for monorepos)
 4. Choose the version bump type (patch, minor, major)
 5. Write a description of your changes
 6. Commit the generated changeset file with your changes
@@ -68,4 +68,4 @@ The publishing process uses [Changesets](https://github.com/changesets/changeset
 
 - `pnpm changeset` - Create a new changeset
 - `pnpm version-packages` - Apply changesets and update versions
-- `pnpm release` - Publish packages updated by changesets 
+- `pnpm release` - Publish packages updated by changesets

@@ -82,7 +82,7 @@ interface ScrollAreaProps
 const ScrollArea = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
   ScrollAreaProps
->(({ className, children, theme, orientation = "vertical", scrollHideDelay, ...props }, ref) => (
+>(({ className, children, theme, orientation = "vertical", ...props }, ref) => (
   <ScrollAreaPrimitive.Root
     ref={ref}
     className={cn(scrollAreaVariants({ theme }), className)}

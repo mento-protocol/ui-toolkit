@@ -85,7 +85,9 @@ export const TabList = ({
 };
 
 
-interface TabProps extends BaseComponentProps {}
+interface TabProps extends BaseComponentProps {
+  children: React.ReactNode;
+}
 
 export const Tab = ({ className, children }: TabProps) => {
   return <div className={className}>{children}</div>;

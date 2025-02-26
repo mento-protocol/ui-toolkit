@@ -35,7 +35,6 @@ export const CurrencyInput = ({
   label,
   className,
   errorMessage,
-  addon,
   fullWidth,
   disabled,
   onMax,

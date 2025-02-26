@@ -27,6 +27,7 @@ async function verifyBuild() {
     try {
       await fs.access(path.join(__dirname, file));
       console.log(`✅ Found ${file}`);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       console.error(`❌ Missing ${file}`);
       hasErrors = true;

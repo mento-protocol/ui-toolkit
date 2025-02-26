@@ -40,26 +40,30 @@ export interface ProgressProps
   max?: number;
 }
 
-const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
-  ({ className, value, max = 100, theme, size, ...props }, ref) => {
-    const percentage = Math.min((value / max) * 100, 100);
+export function Progress({
+  className,
+  value,
+  max = 100,
+  theme,
+  size,
+  ...props
+}: ProgressProps) {
+  const percentage = Math.min((value / max) * 100, 100);
 
-    return (
+  return (
+    <div
+      className={cn(progressVariants({ theme, size }), className)}
+      {...props}
+    >
       <div
-        ref={ref}
-        className={cn(progressVariants({ theme, size }), className)}
-        {...props}
-      >
-        <div
-          className="h-full w-full flex-1 transition-all"
-          style={{
-            transform: `translateX(-${100 - percentage}%)`,
-          }}
-        />
-      </div>
-    );
-  }
-);
+        className="h-full w-full flex-1 transition-all"
+        style={{
+          transform: `translateX(-${100 - percentage}%)`,
+        }}
+      />
+    </div>
+  );
+}
 
 export interface MultiProgressValue {
   value: number;
@@ -73,53 +77,54 @@ export interface MultiProgressProps
   size?: ProgressProps["size"];
 }
 
-const MultiProgress = React.forwardRef<HTMLDivElement, MultiProgressProps>(
-  ({ className, values, max = 100, size, ...props }, ref) => {
-    const percentages = values.map((v) => Math.min((v.value / max) * 100, 100));
+export function MultiProgress({
+  className,
+  values,
+  max = 100,
+  size,
+  ...props
+}: MultiProgressProps) {
+  const percentages = values.map((v) => Math.min((v.value / max) * 100, 100));
 
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "relative h-2 w-full overflow-hidden rounded-full bg-secondary transition-all dark:bg-secondary-dark",
-          size === "sm" && "h-1",
-          size === "lg" && "h-3",
-          className
-        )}
-        {...props}
-      >
-        {percentages.map((percentage, index) => {
-          const previousTotal = percentages
-            .slice(0, index)
-            .reduce((acc, curr) => acc + curr, 0);
+  return (
+    <div
+      className={cn(
+        "relative h-2 w-full overflow-hidden rounded-full bg-secondary transition-all dark:bg-secondary-dark",
+        size === "sm" && "h-1",
+        size === "lg" && "h-3",
+        className
+      )}
+      {...props}
+    >
+      {percentages.map((percentage, index) => {
+        const previousTotal = percentages
+          .slice(0, index)
+          .reduce((acc, curr) => acc + curr, 0);
 
-          return (
-            <div
-              key={index}
-              className={cn(
-                "absolute h-full transition-all",
-                values[index].theme === "primary" &&
-                  "bg-primary dark:bg-primary-dark",
-                values[index].theme === "secondary" &&
-                  "bg-secondary dark:bg-secondary-dark",
-                values[index].theme === "success" &&
-                  "bg-success dark:bg-success-dark",
-                values[index].theme === "danger" &&
-                  "bg-error dark:bg-error-dark",
-                values[index].theme === "warning" &&
-                  "bg-warning dark:bg-warning-dark",
-                values[index].theme === "info" && "bg-info dark:bg-info-dark"
-              )}
-              style={{
-                left: `${previousTotal}%`,
-                width: `${percentage}%`,
-              }}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-);
-
-export { Progress, MultiProgress }; 
+        return (
+          <div
+            key={index}
+            className={cn(
+              "absolute h-full transition-all",
+              values[index].theme === "primary" &&
+                "bg-primary dark:bg-primary-dark",
+              values[index].theme === "secondary" &&
+                "bg-secondary dark:bg-secondary-dark",
+              values[index].theme === "success" &&
+                "bg-success dark:bg-success-dark",
+              values[index].theme === "danger" &&
+                "bg-error dark:bg-error-dark",
+              values[index].theme === "warning" &&
+                "bg-warning dark:bg-warning-dark",
+              values[index].theme === "info" && "bg-info dark:bg-info-dark"
+            )}
+            style={{
+              left: `${previousTotal}%`,
+              width: `${percentage}%`,
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+}

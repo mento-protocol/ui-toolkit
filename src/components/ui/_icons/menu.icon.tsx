@@ -5,7 +5,7 @@ import { type BaseIconProps } from "./base-icon-interface";
 export const MenuIcon = ({
   width = 33,
   height = 32,
-  strokeClass = "stroke-foreground dark:stroke-foreground-dark",
+  strokeClass = "stroke-mento-dark dark:stroke-white",
   className,
   ...props
 }: BaseIconProps) => (

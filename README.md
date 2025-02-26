@@ -37,7 +37,6 @@ pnpm add @rainbow-me/rainbowkit@^2.0.0 \
   date-fns@^2.30.0 \
   framer-motion@^11.0.0 \
   next-themes@^0.4.0 \
-  react-day-picker@^8.9.1 \
   viem@^2.0.0 \
   wagmi@^2.0.0
 ```
@@ -269,22 +268,72 @@ export default function App({ children }) {
 
 ## Development
 
-1. Install dependencies:
+### Setup
 
+1. Clone the repository
+2. Install dependencies:
 ```bash
 pnpm install
 ```
-
-2. Start development server:
-
+3. Start development server:
 ```bash
 pnpm dev
 ```
-
-3. Build the library:
-
+4. Build the library:
 ```bash
 pnpm build
+```
+
+### Code Quality Tools
+
+#### ESLint
+
+The project uses ESLint for code quality enforcement with a modern flat configuration format (recommended for ESLint v8.21.0+). The configuration is structured in two parts:
+
+1. **Shareable Configuration** (`configs/eslint.config.ts`):
+   - Exported as part of the package for consumers
+   - Implements the flat config format with TypeScript
+   - Provides base rules for React, TypeScript, and Next.js
+
+2. **Local Development Configuration** (`eslint.config.ts`):
+   - Imports and extends the shareable configuration
+   - Adds project-specific settings
+
+To use the shareable configuration in your project:
+```javascript
+// eslint.config.js
+import { eslintConfig } from '@mento-protocol/ui-toolkit/configs';
+
+export default eslintConfig;
+
+// For customization:
+// import { createESLintConfig } from '@mento-protocol/ui-toolkit/configs';
+// export default createESLintConfig({ 
+//   ignorePatterns: ['your-patterns-here'] 
+// });
+```
+
+To lint your code:
+```bash
+# Check for issues
+pnpm lint
+
+# Fix automatically fixable issues
+pnpm lint:fix
+```
+
+#### TypeScript
+
+Type checking is enforced with TypeScript:
+```bash
+pnpm typecheck
+```
+
+#### Formatting
+
+Code formatting is handled by Prettier:
+```bash
+pnpm format
 ```
 
 ## Releasing & Publishing
@@ -361,10 +410,6 @@ For manual publishing or troubleshooting, see [.github/README.md](./.github/READ
 - Customizable Color Schemes
 - Consistent Typography
 - Responsive Design Utilities
-
-## Usage
-
-### Basic Component Usage
 
 ## Future Improvements
 

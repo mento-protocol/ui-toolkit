@@ -2,5 +2,5 @@
   "semi": true,
   "singleQuote": false,
   "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindFunctions": ["clsx", "cva", "cn"]
+  "tailwindFunctions": ["clsx", "cva", "cn"],
 }

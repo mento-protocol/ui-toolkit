@@ -31,7 +31,7 @@ export interface BaseIconProps extends ComponentProps<"svg"> {
   style?: CSSProperties;
   /**
    * CSS class for the stroke color, following our color system
-   * @default "stroke-foreground dark:stroke-foreground-dark"
+   * @default "stroke-mento-dark dark:stroke-white"
    */
   strokeClass?: string;
   /**
