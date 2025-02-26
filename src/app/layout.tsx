@@ -9,7 +9,7 @@ import '../styles/globals.css';
 import { mentoRainbowKitProviderConfig, mentoWagmiConfig, rainbowKitTheme } from "@/config";
 import { WagmiProvider } from "wagmi";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { Header } from "@/components/ui";
+import { Header } from "@/components/ui/header";
 
 
 const inter = Inter({
