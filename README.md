@@ -150,6 +150,12 @@ export default function RootLayout({ children }) {
    - Check dark mode classes in Tailwind config
    - Verify dark variants in component styles
 
+5. **TypeScript Compatibility Issues**
+   - Some third-party dependencies (e.g., react-copy-to-clipboard) may have type compatibility issues with React 18
+   - Use `@ts-expect-error` comments with descriptive messages when necessary
+   - Note that TypeScript checking is excluded from CI to prevent environment-specific type resolution issues
+   - For local development, consider creating type declaration files (*.d.ts) to augment problematic dependencies
+
 ### Development Workflow
 
 1. **Local Development**
@@ -294,6 +300,7 @@ The project uses ESLint for code quality enforcement with a modern flat configur
    - Exported as part of the package for consumers
    - Implements the flat config format with TypeScript
    - Provides base rules for React, TypeScript, and Next.js
+   - Includes a rule to disable `@typescript-eslint/prefer-ts-expect-error`, allowing the use of `@ts-ignore` when necessary
 
 2. **Local Development Configuration** (`eslint.config.ts`):
    - Imports and extends the shareable configuration
@@ -324,10 +331,12 @@ pnpm lint:fix
 
 #### TypeScript
 
-Type checking is enforced with TypeScript:
+Type checking is enforced with TypeScript during local development:
 ```bash
 pnpm typecheck
 ```
+
+Note: TypeScript type checking is intentionally excluded from the CI workflow to prevent issues with dependency resolution differences between environments. Use typechecking locally to catch type errors before committing changes.
 
 #### Formatting
 
