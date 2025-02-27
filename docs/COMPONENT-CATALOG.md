@@ -198,3 +198,14 @@ The UI Toolkit has the following component dependencies:
 - **next-themes**: Optional dependency for theme switching
 - **react-day-picker**: For Calendar and DatePicker (currently problematic)
 - **Web3 Libraries**: wagmi, viem, and RainbowKit for blockchain integration 
+
+## Potential Additions from Governance UI
+
+The following components from the Governance UI have been identified as potential additions to the UI Toolkit:
+
+| Component | Complexity | Description | Potential Benefit |
+|-----------|------------|-------------|------------------|
+| **MaxWidthWrapper** | Low | A simple layout utility that provides consistent maximum width constraints with proper padding | Useful for maintaining consistent layouts across applications |
+| **ExecutionCodeView** | Medium | A specialized component for displaying and formatting code/transaction data | Valuable for technical data display, especially in blockchain applications |
+
+These components could be considered for inclusion in future releases based on user needs and compatibility with the existing toolkit architecture. 
