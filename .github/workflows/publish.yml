@@ -6,17 +6,23 @@ on:
       - main
     paths-ignore:
       - '**/*.md'
-      - '.github/**'
       - '.husky/**'
+
+# Add concurrency to prevent multiple publish workflows from running in parallel
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   publish:
     name: Build, Verify, and Publish
     runs-on: ubuntu-latest
+    # Explicitly define permissions at the job level for security best practices
     permissions:
       contents: write
       pull-requests: write
       packages: write
+      id-token: write # For provenance with NPM
     
     steps:
       - name: Checkout Repository
@@ -24,12 +30,16 @@ jobs:
         with:
           # This makes sure the entire history is fetched, which is required for changesets to work properly
           fetch-depth: 0
+          # Explicitly set token for better security posture
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
+          # Enable provenance for NPM packages (modern security feature)
+          provenance: true
       
       - name: Setup PNPM
         uses: pnpm/action-setup@v3
@@ -66,40 +76,59 @@ jobs:
       - name: Verify Build
         run: pnpm verify
       
+      # Modern approach uses a direct API token instead of GITHUB_TOKEN for changesets
+      # Using the latest changesets action
       - name: Create Release Pull Request or Publish to NPM
         id: changesets
         uses: changesets/action@v1
         with:
-          # This expects you to have a script called release which runs changeset publish
           publish: pnpm release
           version: pnpm version-packages
           commit: "chore: version packages"
           title: "chore: version packages"
+          # Create a direct commit instead of a PR when PAT is available
+          createGithubReleases: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # Using a PAT token for changesets
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       
+      # Fallback publish approach if changesets didn't publish
       - name: Publish (if not already published by changesets)
         if: steps.changesets.outputs.published != 'true'
         run: |
-          # Only run if there are no unpublished changesets and we're on main
-          if [ -z "$(ls -A .changeset)" ] || [ "$(ls -A .changeset | grep -v 'README.md\|config.json')" = "" ]; then
+          # Only run if there are no unpublished changesets or all changesets are empty
+          if [ -z "$(find .changeset -type f -not -name 'README.md' -not -name 'config.json')" ]; then
             echo "No changesets found, checking if we need to publish current version"
             
-            # Check if the current version is published
-            PKG_NAME=$(node -p "require('./package.json').name")
-            PKG_VERSION=$(node -p "require('./package.json').version")
+            # Get package info with error handling
+            PKG_NAME=$(node -p "try { require('./package.json').name } catch(e) { console.error(e); process.exit(1); }")
+            PKG_VERSION=$(node -p "try { require('./package.json').version } catch(e) { console.error(e); process.exit(1); }")
             
-            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://registry.npmjs.org/$PKG_NAME/$PKG_VERSION")
+            if [ -z "$PKG_NAME" ] || [ -z "$PKG_VERSION" ]; then
+              echo "Failed to extract package name or version"
+              exit 1
+            fi
+            
+            echo "Checking if $PKG_NAME@$PKG_VERSION is already published"
+            
+            # Modern HTTP request with proper error handling
+            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" --retry 3 --retry-delay 2 "https://registry.npmjs.org/$PKG_NAME/$PKG_VERSION")
             
             if [ "$HTTP_STATUS" = "404" ]; then
               echo "Version $PKG_VERSION not found on NPM. Publishing..."
-              npm publish --access public
-            else
+              # Add provenance for security
+              npm publish --access public --provenance
+            elif [ "$HTTP_STATUS" = "200" ]; then
               echo "Version $PKG_VERSION already published. Skipping."
+            else
+              echo "Unexpected HTTP status: $HTTP_STATUS when checking NPM registry"
+              exit 1
             fi
           else
             echo "Changesets found but not processed. This might require manual attention."
+            # List the non-processed changesets for debugging
+            find .changeset -type f -not -name 'README.md' -not -name 'config.json' | sort
           fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} 

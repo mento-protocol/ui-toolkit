@@ -37,8 +37,8 @@
     "clean": "rm -rf dist",
     "verify": "node verify-build.js",
     "prepublishOnly": "pnpm clean && pnpm build && pnpm verify",
-    "version-packages": "changeset version",
-    "release": "changeset publish"
+    "version-packages": "changeset version && pnpm install --no-frozen-lockfile",
+    "release": "changeset publish --no-git-tag"
   },
   "peerDependencies": {
     "@rainbow-me/rainbowkit": "^2.0.0",

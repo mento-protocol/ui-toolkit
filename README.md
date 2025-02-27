@@ -385,10 +385,80 @@ For manual publishing or troubleshooting, see [.github/README.md](./.github/READ
 
 ## Contributing
 
-1. Create a feature branch
-2. Make your changes
-3. Run tests and linting
-4. Submit a PR
+### Publishing Process
+
+The UI Toolkit uses [Changesets](https://github.com/changesets/changesets) for versioning and publishing. This ensures consistent, semantic versioning and proper documentation of changes.
+
+#### Local Development Workflow
+
+1. **Make your changes**
+   - Implement features or fixes
+   - Write tests
+   - Update documentation
+
+2. **Create a changeset**
+   ```bash
+   pnpm changeset
+   ```
+   - Select the packages that have changed
+   - Choose an appropriate semver bump (major/minor/patch)
+   - Write a concise but descriptive message about your changes
+
+3. **Push your changes**
+   - The changeset files should be committed with your code
+   - Create a pull request with your changes
+
+#### Automated Publishing
+
+The automated publishing process handles version bumping and NPM publishing:
+
+1. **GitHub Actions Workflow**
+   - When changes are merged to `main`, the publish workflow runs
+   - It builds and verifies the package
+   - Uses changesets to version packages and publish to NPM
+
+2. **How Publishing Works**
+   - If changesets are present, versions are bumped and changes published
+   - If no changesets are found, it checks if the current version needs publishing
+   - NPM package provenance is enabled for security
+
+3. **Troubleshooting**
+   - If your package isn't publishing, check the GitHub Actions logs
+   - Verify your changeset files are properly formatted
+   - Ensure NPM tokens are correctly configured in repository secrets
+
+#### Manual Release (if needed)
+
+For manual releases in exceptional circumstances:
+
+```bash
+# 1. Version packages
+pnpm version-packages
+
+# 2. Build
+pnpm build
+
+# 3. Verify
+pnpm verify
+
+# 4. Publish
+pnpm release
+```
+
+#### Note on GitHub Actions Permissions
+
+The publishing workflow uses a Personal Access Token (PAT) or GitHub token with appropriate permissions to:
+- Create releases
+- Push version changes to the repository
+- Publish packages to NPM
+
+For repository maintainers: ensure `RELEASE_TOKEN` and `NPM_TOKEN` secrets are configured in the repository settings.
+
+#### Detailed Documentation
+
+For more detailed information about the publishing process:
+- [Complete Publishing Guide](./docs/PUBLISHING.md)
+- [GitHub Actions Permissions Guide](./docs/GITHUB-ACTIONS-PERMISSIONS.md)
 
 ## Requirements
 
